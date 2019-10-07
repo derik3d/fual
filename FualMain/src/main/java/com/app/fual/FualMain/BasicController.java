@@ -35,12 +35,9 @@ public class BasicController {
     public DataResponse home(Model model) {
         return new DataResponse();
     }
-/*
-    @GetMapping("/getTestJson")
-    public String testendpoint(Model model) {
-        return "hol";
-    }
-    */
+    
+    
+    
     @RequestMapping(value = "/getTestJson",
     	      method = RequestMethod.GET, 
     	      produces = MediaType.APPLICATION_JSON_VALUE
