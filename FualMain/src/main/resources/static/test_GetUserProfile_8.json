@@ -1,0 +1,232 @@
+{
+  "UserList": [
+    {
+      "ID": 0,
+      "IsTrainer": false,
+      "Name": "Testerson",
+      "Tag": "@Test",
+      "ProfileImageLink": "http://www//.jpg",
+      "UserInfo": "This is my user Bio",
+      "City": "Bogotá",
+      "Country": "Colombia",
+      "Gender": "Male",
+      "Age": 26,
+      "Level": 5,
+      "FollowersID": [
+        13,
+        17,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "FollowedID": [
+        13,
+        17,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "PostsID": [
+        13,
+        17
+      ],
+      "SendedEmailsUserID": [
+        13,
+        17
+      ],
+      "ReceivedEmailsUserID": [
+        13,
+        17
+      ],
+      "BlockedUsersID": [
+        13,
+        17
+      ]
+    },
+    {
+      "ID": 0,
+      "IsTrainer": false,
+      "Name": "Besterson",
+      "Tag": "@Best",
+      "ProfileImageLink": "http://www//.jpg",
+      "UserInfo": "This is my user Bio",
+      "City": "Bogotá",
+      "Country": "Colombia",
+      "Gender": "Male",
+      "Age": 26,
+      "Level": 5,
+      "FollowersID": [
+        13,
+        17,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "FollowedID": [
+        13,
+        17,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "PostsID": [
+        13,
+        17
+      ],
+      "SendedEmailsUserID": [
+        13,
+        17
+      ],
+      "ReceivedEmailsUserID": [
+        13,
+        17
+      ],
+      "BlockedUsersID": [
+        13,
+        17
+      ]
+    },
+    {
+      "ID": 0,
+      "IsTrainer": false,
+      "Name": "Cesterson",
+      "Tag": "@Cest",
+      "ProfileImageLink": "http://www//.jpg",
+      "UserInfo": "This is my user Bio",
+      "City": "Bogotá",
+      "Country": "Colombia",
+      "Gender": "Male",
+      "Age": 26,
+      "Level": 5,
+      "FollowersID": [
+        13,
+        17,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "FollowedID": [
+        13,
+        17,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "PostsID": [
+        13,
+        17
+      ],
+      "SendedEmailsUserID": [
+        13,
+        17
+      ],
+      "ReceivedEmailsUserID": [
+        13,
+        17
+      ],
+      "BlockedUsersID": [
+        13,
+        17
+      ]
+    },
+    {
+      "ID": 0,
+      "IsTrainer": false,
+      "Name": "Desterson",
+      "Tag": "@Dest",
+      "ProfileImageLink": "http://www//.jpg",
+      "UserInfo": "This is my user Bio",
+      "City": "Bogotá",
+      "Country": "Colombia",
+      "Gender": "Male",
+      "Age": 26,
+      "Level": 5,
+      "FollowersID": [
+        13,
+        17,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "FollowedID": [
+        13,
+        17,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "PostsID": [
+        13,
+        17
+      ],
+      "SendedEmailsUserID": [
+        13,
+        17
+      ],
+      "ReceivedEmailsUserID": [
+        13,
+        17
+      ],
+      "BlockedUsersID": [
+        13,
+        17
+      ]
+    }
+  ]
+}

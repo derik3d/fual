@@ -1,0 +1,44 @@
+{
+  "UserList": 
+  [
+    {
+      "ID": 0,
+      "IsTrainer": false,
+      "Name": "Testerson",
+      "Tag": "@Test",
+      "ProfileImageLink": "http://www//.jpg",
+      "UserInfo": "This is my user Bio",
+      "City": "Bogotá",
+      "Country": "Colombia",
+      "Gender": "Male",
+      "Age": 26,
+      "Level": 5,
+      "FollowersID": [
+        13,
+        17
+      ],
+      "FollowedID": [
+        13,
+        17,
+        15,
+        1,
+        2
+      ],
+      "PostsID": [
+
+      ],
+      "SendedEmailsID": [
+        13,
+        17
+      ],
+      "ReceivedEmailsID": [
+        13,
+        17
+      ],
+      "BlockedUsersID": [
+        13,
+        17
+      ]
+    }
+  ]
+}

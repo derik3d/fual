@@ -1,0 +1,44 @@
+﻿{
+  "EmailList": [
+    {
+      "bIsRead": false,
+      "ReceiverId": 1,
+      "SenderId": 2,
+      "Date": "3600000",
+      "Content": {
+        "Title": "Push ups",
+        "Description": "Soy el mensaje del correo"
+      }
+    },
+    {
+      "bIsRead": true,
+      "ReceiverId": 1,
+      "SenderId": 2,
+      "Date": "5200000",
+      "Content": {
+        "Title": "Flex",
+        "Description": "I'm the message :D"
+      }
+    },
+    {
+      "bIsRead": false,
+      "ReceiverId": 1,
+      "SenderId": 3,
+      "Date": "141240",
+      "Content": {
+        "Title": "Lorem Ipsum",
+        "Description": "Dolor Sit Amet"
+      }
+    },
+    {
+      "bIsRead": true,
+      "ReceiverId": 2,
+      "SenderId": 4,
+      "Date": "1234545",
+      "Content": {
+        "Title": "A",
+        "Description": "B"
+      }
+    }
+  ]
+}

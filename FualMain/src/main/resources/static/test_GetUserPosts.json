@@ -1,0 +1,40 @@
+{
+  "PostList": [
+    {
+      "PostId": 0,
+      "CreatorId": 1,
+      "Date": "3600000",
+      "Location": "Bogotá",
+      "Content": {
+        "ImageLink": "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F35%2F2019%2F05%2F16185817%2Fbest-back-exercises-for-back-fat_1.jpg&q=85",
+        "Challenge": "Challenge",
+        "Description": "Soy el post"
+      },
+      "Likes": [
+        1,
+        5,
+        10
+      ],
+      "Comments": [
+        {
+          "UserId": 1,
+          "Date": "3600000",
+          "Description": "Que buen Post"
+        },
+        {
+          "UserId": 2,
+          "Date": "1800000",
+          "Description": "Awesome Post"
+        }
+      ],
+      "Tags": [
+        "Exercise",
+        "Fitness",
+        "Workout",
+        "A",
+        "B",
+        "C"
+      ]
+    }
+  ]
+}

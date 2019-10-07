@@ -1,0 +1,135 @@
+{
+  "UserList": [
+    {
+      "userID": 0,
+      "bIsTrainer": false,
+      "name": "Testerson",
+      "tag": "@Test",
+      "profileImageLink": "http://www//.jpg",
+      "userInfo": "This is my user Bio",
+      "city": "Bogotá",
+      "country": "Colombia",
+      "userGender": "Male",
+      "userAge": 26,
+      "userLevel": 5,
+      "followers": [
+        13,
+        17
+      ],
+      "posts": [
+        
+      ],
+      "sendedEmails": [
+        13,
+        17
+      ],
+      "receivedEmails": [
+        13,
+        17
+      ],
+      "blockedUsers": [
+        13,
+        17
+      ]
+    },
+    {
+      "userID": 1,
+      "bIsTrainer": false,
+      "name": "Testerson2",
+      "tag": "@Test2",
+      "profileImageLink": "http://www//.jpg",
+      "userInfo": "This is my user Bio2",
+      "city": "Bogotá2",
+      "country": "Colombia2",
+      "userGender": "Male2",
+      "userAge": 26,
+      "userLevel": 5,
+      "followers": [
+        15,
+        19
+      ],
+      "posts": [
+        15,
+        19
+      ],
+      "sendedEmails": [
+        15,
+        19
+      ],
+      "receivedEmails": [
+        15,
+        19
+      ],
+      "blockedUsers": [
+        13,
+        17
+      ]
+    },
+    {
+      "userID": 2,
+      "bIsTrainer": false,
+      "name": "Testerson3",
+      "tag": "@Test3",
+      "profileImageLink": "http://www//.jpg",
+      "userInfo": "This is my user Bio",
+      "city": "Bogotá",
+      "country": "Colombia",
+      "userGender": "Male",
+      "userAge": 26,
+      "userLevel": 5,
+      "followers": [
+        13,
+        17
+      ],
+      "posts": [
+        13,
+        17
+      ],
+      "sendedEmails": [
+        13,
+        17
+      ],
+      "receivedEmails": [
+        13,
+        17
+      ],
+      "blockedUsers": [
+        13,
+        17
+      ]
+    },
+    {
+      "userID": 3,
+      "bIsTrainer": false,
+      "name": "Testerson4",
+      "tag": "@Test4",
+      "profileImageLink": "http://www//.jpg",
+      "userInfo": "This is my user Bio",
+      "city": "Bogotá",
+      "country": "Colombia",
+      "userGender": "Male",
+      "userAge": 26,
+      "userLevel": 5,
+      "followers": [
+        13,
+        17
+      ],
+      "posts": [
+        13,
+        17
+      ],
+      "sendedEmails": [
+        13,
+        17
+      ],
+      "receivedEmails": [
+        13,
+        17
+      ],
+      "blockedUsers": [
+        13,
+        17
+      ]
+    }
+  ]
+}
