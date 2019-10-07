@@ -39,7 +39,6 @@ public class BasicController {
     
     
     @RequestMapping(value = "/getTestJson",
-    	      method = RequestMethod.GET, 
     	      produces = MediaType.APPLICATION_JSON_VALUE
     	      )
     public String home(@RequestParam(name="name", required=false, defaultValue="no") String name) {
