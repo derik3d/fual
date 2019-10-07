@@ -10,4 +10,7 @@ public class FualMainApplication {
 		SpringApplication.run(FualMainApplication.class, args);
 	}
 
+	
+	
+	
 }
