@@ -16,4 +16,10 @@ public class BasicController {
         return "greeting";
     }
 
+    @GetMapping("/")
+    public String home(Model model) {
+        model.addAttribute("name", "this is home");
+        return "greeting";
+    }
+
 }
