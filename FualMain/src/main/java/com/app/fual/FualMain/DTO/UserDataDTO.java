@@ -44,24 +44,6 @@ public class UserDataDTO {
     
 	private List<UserDTO> blockedUsers;
 
-	@Override
-	public int hashCode() {
-		// TODO Auto-generated method stub
-		return super.hashCode();
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return super.equals(obj);
-	}
-
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -188,6 +170,121 @@ public class UserDataDTO {
 
 	public void setBlockedUsers(List<UserDTO> blockedUsers) {
 		this.blockedUsers = blockedUsers;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + age;
+		result = prime * result + ((blockedUsers == null) ? 0 : blockedUsers.hashCode());
+		result = prime * result + ((city == null) ? 0 : city.hashCode());
+		result = prime * result + ((country == null) ? 0 : country.hashCode());
+		result = prime * result + ((followedBy == null) ? 0 : followedBy.hashCode());
+		result = prime * result + ((follows == null) ? 0 : follows.hashCode());
+		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + (isTrainer ? 1231 : 1237);
+		result = prime * result + level;
+		result = prime * result + ((personalChats == null) ? 0 : personalChats.hashCode());
+		result = prime * result + ((posts == null) ? 0 : posts.hashCode());
+		result = prime * result + ((profileImageLink == null) ? 0 : profileImageLink.hashCode());
+		result = prime * result + ((tag == null) ? 0 : tag.hashCode());
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		result = prime * result + ((userInfo == null) ? 0 : userInfo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UserDataDTO other = (UserDataDTO) obj;
+		if (age != other.age)
+			return false;
+		if (blockedUsers == null) {
+			if (other.blockedUsers != null)
+				return false;
+		} else if (!blockedUsers.equals(other.blockedUsers))
+			return false;
+		if (city == null) {
+			if (other.city != null)
+				return false;
+		} else if (!city.equals(other.city))
+			return false;
+		if (country == null) {
+			if (other.country != null)
+				return false;
+		} else if (!country.equals(other.country))
+			return false;
+		if (followedBy == null) {
+			if (other.followedBy != null)
+				return false;
+		} else if (!followedBy.equals(other.followedBy))
+			return false;
+		if (follows == null) {
+			if (other.follows != null)
+				return false;
+		} else if (!follows.equals(other.follows))
+			return false;
+		if (gender == null) {
+			if (other.gender != null)
+				return false;
+		} else if (!gender.equals(other.gender))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (isTrainer != other.isTrainer)
+			return false;
+		if (level != other.level)
+			return false;
+		if (personalChats == null) {
+			if (other.personalChats != null)
+				return false;
+		} else if (!personalChats.equals(other.personalChats))
+			return false;
+		if (posts == null) {
+			if (other.posts != null)
+				return false;
+		} else if (!posts.equals(other.posts))
+			return false;
+		if (profileImageLink == null) {
+			if (other.profileImageLink != null)
+				return false;
+		} else if (!profileImageLink.equals(other.profileImageLink))
+			return false;
+		if (tag == null) {
+			if (other.tag != null)
+				return false;
+		} else if (!tag.equals(other.tag))
+			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
+		if (userInfo == null) {
+			if (other.userInfo != null)
+				return false;
+		} else if (!userInfo.equals(other.userInfo))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "UserDataDTO [id=" + id + ", user=" + user + ", isTrainer=" + isTrainer + ", tag=" + tag
+				+ ", profileImageLink=" + profileImageLink + ", userInfo=" + userInfo + ", city=" + city + ", country="
+				+ country + ", gender=" + gender + ", age=" + age + ", level=" + level + ", follows=" + follows
+				+ ", followedBy=" + followedBy + ", posts=" + posts + ", personalChats=" + personalChats
+				+ ", blockedUsers=" + blockedUsers + "]";
 	}
 	
 	

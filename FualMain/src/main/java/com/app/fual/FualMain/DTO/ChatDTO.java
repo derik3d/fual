@@ -18,24 +18,6 @@ public class ChatDTO {
     
 	private List<CommentDTO> comments;
 
-	@Override
-	public int hashCode() {
-		// TODO Auto-generated method stub
-		return super.hashCode();
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return super.equals(obj);
-	}
-
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -58,6 +40,48 @@ public class ChatDTO {
 
 	public void setComments(List<CommentDTO> comments) {
 		this.comments = comments;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((participants == null) ? 0 : participants.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ChatDTO other = (ChatDTO) obj;
+		if (comments == null) {
+			if (other.comments != null)
+				return false;
+		} else if (!comments.equals(other.comments))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (participants == null) {
+			if (other.participants != null)
+				return false;
+		} else if (!participants.equals(other.participants))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "ChatDTO [id=" + id + ", participants=" + participants + ", comments=" + comments + "]";
 	}
 	
 	

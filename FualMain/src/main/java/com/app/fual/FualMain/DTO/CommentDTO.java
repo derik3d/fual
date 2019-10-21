@@ -1,6 +1,6 @@
 package com.app.fual.FualMain.DTO;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -27,24 +27,6 @@ public class CommentDTO {
     private Date date;
 
     private List<UserDTO> likedBy;
-
-	@Override
-	public int hashCode() {
-		// TODO Auto-generated method stub
-		return super.hashCode();
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return super.equals(obj);
-	}
-
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
-	}
 
 	public Long getId() {
 		return id;
@@ -92,6 +74,64 @@ public class CommentDTO {
 
 	public void setLikedBy(List<UserDTO> likedBy) {
 		this.likedBy = likedBy;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((likedBy == null) ? 0 : likedBy.hashCode());
+		result = prime * result + ((message == null) ? 0 : message.hashCode());
+		result = prime * result + ((sender == null) ? 0 : sender.hashCode());
+		result = prime * result + (status ? 1231 : 1237);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CommentDTO other = (CommentDTO) obj;
+		if (date == null) {
+			if (other.date != null)
+				return false;
+		} else if (!date.equals(other.date))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (likedBy == null) {
+			if (other.likedBy != null)
+				return false;
+		} else if (!likedBy.equals(other.likedBy))
+			return false;
+		if (message == null) {
+			if (other.message != null)
+				return false;
+		} else if (!message.equals(other.message))
+			return false;
+		if (sender == null) {
+			if (other.sender != null)
+				return false;
+		} else if (!sender.equals(other.sender))
+			return false;
+		if (status != other.status)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "CommentDTO [id=" + id + ", status=" + status + ", sender=" + sender + ", message=" + message + ", date="
+				+ date + ", likedBy=" + likedBy + "]";
 	}
     
     

@@ -17,25 +17,6 @@ public class ChallengeDTO {
 	private String description;
     
 	private String duration;
-
-	@Override
-	public int hashCode() {
-		// TODO Auto-generated method stub
-		return super.hashCode();
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return super.equals(obj);
-	}
-
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -67,6 +48,56 @@ public class ChallengeDTO {
 	public void setDuration(String duration) {
 		this.duration = duration;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((duration == null) ? 0 : duration.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((level == null) ? 0 : level.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ChallengeDTO other = (ChallengeDTO) obj;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (duration == null) {
+			if (other.duration != null)
+				return false;
+		} else if (!duration.equals(other.duration))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (level == null) {
+			if (other.level != null)
+				return false;
+		} else if (!level.equals(other.level))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "ChallengeDTO [id=" + id + ", level=" + level + ", description=" + description + ", duration=" + duration
+				+ "]";
+	}
+	
 	
 	
 
