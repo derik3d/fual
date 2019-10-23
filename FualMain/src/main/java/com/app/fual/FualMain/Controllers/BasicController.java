@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
+@RequestMapping("oldController")
 public class BasicController {
 	
 	@Autowired
