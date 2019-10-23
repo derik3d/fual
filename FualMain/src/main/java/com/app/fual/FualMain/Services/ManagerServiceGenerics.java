@@ -1,6 +1,7 @@
 package com.app.fual.FualMain.Services;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
@@ -86,14 +87,54 @@ public class ManagerServiceGenerics<T> implements IManagerServiceGenerics<T>{
 	
 	@Override
 	public T createEntity(T entity){
-		return getRepoDAO(entity).save(entity);		
+		CrudRepository<T,Long> repo = getRepoDAO(entity);
+		return repo.save(entity);		
 	}
 	
 	
 	@Override
 	public T findEntity(T entitySample, Long id){
-		Optional<T> foundItem = getRepoDAO(entitySample).findById(id);
+		CrudRepository<T,Long> repo = getRepoDAO(entitySample);
+		
+		if(!repo.existsById(id))
+			return null;
+		
+		Optional<T> foundItem = repo.findById(id);
 		return foundItem.orElseGet(null);		
+	}
+
+
+	@Override
+	public T updateEntity(Long id, T entity) {
+		CrudRepository<T,Long> repo = getRepoDAO(entity);
+		
+		if(!repo.existsById(id))
+			return null;
+
+
+		entity = repo.save(entity);
+		
+		return entity;
+	}
+
+
+	@Override
+	public boolean deleteEntity(T entitySample, Long id) {
+		CrudRepository<T,Long> repo = getRepoDAO(entitySample);
+		
+		if(!repo.existsById(id))
+			return false;
+
+		repo.deleteById(id);
+
+		return true;
+	}
+
+
+	@Override
+	public List<T> getAll(T entitySample) {
+		CrudRepository<T,Long> repo = getRepoDAO(entitySample);
+		return (List<T>) repo.findAll();
 	}
 
 }
