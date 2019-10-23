@@ -95,17 +95,17 @@ public class BasicController {
       
 		challenge = iManagerService.createChallenge(challenge);
         
-        return ResponseEntity.ok(HttpStatus.OK);
-    }
+    	if (challenge == null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	else return new ResponseEntity<>(challenge,HttpStatus.OK);    }
     
     @PostMapping("/createPost")
     public ResponseEntity postPost(
       @RequestBody PostDTO post) {
       
 		post = iManagerService.createPost(post);
-        
-        return ResponseEntity.ok(HttpStatus.OK);
-    }
+    	
+    	if (post == null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	else return new ResponseEntity<>(post,HttpStatus.OK);    }
     
     
     

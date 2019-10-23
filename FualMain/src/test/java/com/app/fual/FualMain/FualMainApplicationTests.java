@@ -14,19 +14,28 @@ import com.app.fual.FualMain.DTO.PostDTO;
 import com.app.fual.FualMain.DTO.UserDTO;
 import com.app.fual.FualMain.DTO.UserDataDTO;
 import com.app.fual.FualMain.Interfaces.IManagerService;
+import com.app.fual.FualMain.Interfaces.IManagerServiceGenerics;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @AutoConfigureMockMvc
 public class FualMainApplicationTests {
 
-	
+
 	@Autowired
 	IManagerService iManagerService;
+	
+	@Autowired
+	IManagerServiceGenerics<UserDTO> iManagerServiceGenerics;
 	
 	@Test
 	public void usercreation() {
 		
+		
+		UserDTO userr = new UserDTO();
+		userr.setName("pedrito");
+		System.out.println(iManagerServiceGenerics.createEntity(userr));
+
 		
 		//users creation
 		System.out.println(iManagerService.createUser("alfredito777"));
