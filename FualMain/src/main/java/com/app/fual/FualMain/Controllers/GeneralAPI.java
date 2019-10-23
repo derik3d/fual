@@ -31,7 +31,9 @@ public abstract class GeneralAPI<T> {
     @GetMapping
     public ResponseEntity<List<T>> getAllEntities(){
 
-    	List<T> entities = iManagerServiceGenerics.getAll();
+    	T entitySample = null;
+    	
+    	List<T> entities = iManagerServiceGenerics.getAll(entitySample);
     	
     	if (entities == null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     	else return new ResponseEntity<>(entities,HttpStatus.OK);
@@ -42,12 +44,12 @@ public abstract class GeneralAPI<T> {
     public ResponseEntity<T> getEntity(
       @PathVariable(name="id") Long id) {
     	
-    	T entity = null;
+    	T entitySample = null;
     	
-    	entity = iManagerServiceGenerics.findEntity( entity , id);
+    	entitySample = iManagerServiceGenerics.findEntity( entitySample , id);
     	
-    	if (entity == null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-    	else return new ResponseEntity<>(entity,HttpStatus.OK);
+    	if (entitySample == null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	else return new ResponseEntity<>(entitySample,HttpStatus.OK);
 	}
 	
     @PostMapping
@@ -72,10 +74,13 @@ public abstract class GeneralAPI<T> {
     @DeleteMapping
     public ResponseEntity delete(
   	      @PathVariable(name="id") Long id) {
-  	boolean result = iManagerServiceGenerics.deleteEntity(id);
+    	
+    	T entitySample = null;
+    	
+    	boolean result = iManagerServiceGenerics.deleteEntity(entitySample, id);
   	
-  	if (result)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-  	else return ResponseEntity.ok(HttpStatus.OK);
+    	if (result)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	else return ResponseEntity.ok(HttpStatus.OK);
   }
     
 

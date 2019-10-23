@@ -7,7 +7,7 @@ public interface IManagerServiceGenerics<T> {
 	T createEntity(T entity);
 	T findEntity(T entitySample, Long id);
 	T updateEntity(Long id, T entity);
-	boolean deleteEntity(Long id);
-	List<T> getAll();
+	boolean deleteEntity(T entitySample, Long id);
+	List<T> getAll(T entitySample);
 
 }
