@@ -30,8 +30,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("oldController")
-public class BasicController {
+@RequestMapping("customQuery")
+public class CustomController {
 	
 	@Autowired
 	IManagerService iManagerService;
