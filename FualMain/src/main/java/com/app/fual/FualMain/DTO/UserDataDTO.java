@@ -54,11 +54,11 @@ public class UserDataDTO {
     @JoinTable(name="FOLLOWED_USERDATA_JTABLE")
 	private Set<UserDTO> followedBy = new HashSet<>();
     
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "creator")
 	private Set<PostDTO> postsCreated = new HashSet<>();
     
 	@OneToMany(fetch = FetchType.EAGER)
-	private Set<PersonalChatDTO> personalChats = new HashSet<>();
+	private Set<PrivateChatDTO> privateChats = new HashSet<>();
     
 	@ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="BLOCKEDUSERS_USERDATA_JTABLE")
@@ -176,12 +176,12 @@ public class UserDataDTO {
 		this.postsCreated = postsCreated;
 	}
 
-	public Set<PersonalChatDTO> getPersonalChats() {
-		return personalChats;
+	public Set<PrivateChatDTO> getprivateChats() {
+		return privateChats;
 	}
 
-	public void setPersonalChats(Set<PersonalChatDTO> personalChats) {
-		this.personalChats = personalChats;
+	public void setprivateChats(Set<PrivateChatDTO> privateChats) {
+		this.privateChats = privateChats;
 	}
 
 	public Set<UserDTO> getBlockedUsers() {
@@ -206,7 +206,7 @@ public class UserDataDTO {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + (isTrainer ? 1231 : 1237);
 		result = prime * result + level;
-		result = prime * result + ((personalChats == null) ? 0 : personalChats.hashCode());
+		result = prime * result + ((privateChats == null) ? 0 : privateChats.hashCode());
 		result = prime * result + ((postsCreated == null) ? 0 : postsCreated.hashCode());
 		result = prime * result + ((profileImageLink == null) ? 0 : profileImageLink.hashCode());
 		result = prime * result + ((tag == null) ? 0 : tag.hashCode());
@@ -265,10 +265,10 @@ public class UserDataDTO {
 			return false;
 		if (level != other.level)
 			return false;
-		if (personalChats == null) {
-			if (other.personalChats != null)
+		if (privateChats == null) {
+			if (other.privateChats != null)
 				return false;
-		} else if (!personalChats.equals(other.personalChats))
+		} else if (!privateChats.equals(other.privateChats))
 			return false;
 		if (postsCreated == null) {
 			if (other.postsCreated != null)
@@ -303,7 +303,7 @@ public class UserDataDTO {
 		return "UserDataDTO [id=" + id + ", user=" + user + ", isTrainer=" + isTrainer + ", tag=" + tag
 				+ ", profileImageLink=" + profileImageLink + ", userInfo=" + userInfo + ", city=" + city + ", country="
 				+ country + ", gender=" + gender + ", age=" + age + ", level=" + level + ", follows=" + follows
-				+ ", followedBy=" + followedBy + ", postsCreated=" + postsCreated + ", personalChats=" + personalChats
+				+ ", followedBy=" + followedBy + ", postsCreated=" + postsCreated + ", privateChats=" + privateChats
 				+ ", blockedUsers=" + blockedUsers + "]";
 	}
 	

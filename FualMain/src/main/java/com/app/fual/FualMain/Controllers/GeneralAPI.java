@@ -1,7 +1,9 @@
 package com.app.fual.FualMain.Controllers;
 
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +28,20 @@ public abstract class GeneralAPI<T> {
 	@Autowired
 	IManagerServiceGenerics<T> iManagerServiceGenerics;
 	
-	
+	private Class<T> type;
+
+	@SuppressWarnings("unchecked")
+	@PostConstruct
+	public void initialize()
+	{
+		ParameterizedType superClass = (ParameterizedType) getClass().getGenericSuperclass();
+		type= (Class<T>) superClass.getActualTypeArguments()[0];
+	}
 
     @GetMapping
-    public ResponseEntity<List<T>> getAllEntities(){
-
-    	T entitySample = null;
+    public ResponseEntity<List<T>> getAllEntities() throws InstantiationException, IllegalAccessException{
+    	
+    	T entitySample = type.newInstance();
     	
     	List<T> entities = iManagerServiceGenerics.getAll(entitySample);
     	
@@ -42,9 +52,9 @@ public abstract class GeneralAPI<T> {
 	
     @GetMapping("{id}")
     public ResponseEntity<T> getEntity(
-      @PathVariable(name="id") Long id) {
-    	
-    	T entitySample = null;
+      @PathVariable(name="id") Long id) throws InstantiationException, IllegalAccessException {
+    	    	
+		T entitySample = type.newInstance();
     	
     	entitySample = iManagerServiceGenerics.findEntity( entitySample , id);
     	
@@ -71,11 +81,12 @@ public abstract class GeneralAPI<T> {
     	else return new ResponseEntity<>(entity,HttpStatus.OK);
     }
     
-    @DeleteMapping
+    @SuppressWarnings("rawtypes")
+	@DeleteMapping
     public ResponseEntity delete(
-  	      @PathVariable(name="id") Long id) {
+  	      @PathVariable(name="id") Long id) throws InstantiationException, IllegalAccessException {
     	
-    	T entitySample = null;
+    	T entitySample = type.newInstance();
     	
     	boolean result = iManagerServiceGenerics.deleteEntity(entitySample, id);
   	

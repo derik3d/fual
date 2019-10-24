@@ -35,9 +35,8 @@ public class CommentDTO {
 	@Column(nullable = false)
 	private String message;
     
-	@Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+    private Date date = new Date();
 	
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="COMMENT_USER_JTABLE")

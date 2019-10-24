@@ -1,7 +1,9 @@
 package com.app.fual.FualMain.Services;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
@@ -50,37 +52,46 @@ public class ManagerServiceGenerics<T> implements IManagerServiceGenerics<T>{
 	IUserDataDAO iUserDataDAO;
 	
 	
-	private ArrayList<Object> repos;
+	private static ArrayList<Object> repos;
+	private static Map<String,CrudRepository> reposMap;
 	
 	@PostConstruct
 	public void getIntefaces() {
 		
 		ArrayList<Object> myInt = new ArrayList<>();
-
-		myInt.add(iChallengeDAO);
-		myInt.add(iCommentDAO);
-		myInt.add(iPersonalChatDAO);
-		myInt.add(iPostDAO);
-		myInt.add(iPublicChatDAO);
-		myInt.add(iUserDAO);
-		myInt.add(iUserDataDAO);
-
-		repos = myInt;
+		reposMap = new HashMap<String , CrudRepository>();
+		
+		reposMap.put("ChallengeDTO", iChallengeDAO);
+		reposMap.put("CommentDTO", iCommentDAO);
+		reposMap.put("PrivateChatDTO", iPersonalChatDAO);
+		reposMap.put("PostDTO", iPostDAO);
+		reposMap.put("PublicChatDTO", iPublicChatDAO);
+		reposMap.put("UserDTO", iUserDAO);
+		reposMap.put("UserDataDTO", iUserDataDAO);
+		
 	}
 	
 	
 	@SuppressWarnings("unchecked")
 	public CrudRepository<T,Long> getRepoDAO(T sample) {
 		CrudRepository<T,Long> res = null;
-		for(Object obj: repos) {
-			try {
-				res = (CrudRepository<T,Long>)obj;
-				break;
-			}catch(ClassCastException e) {
-				//expected class cast exception
-			}
+		
+		System.out.println(reposMap.size());
+		
+		for(Map.Entry<String,CrudRepository> obj: reposMap.entrySet()) {
 			
+			System.out.println(obj.getKey());
+			System.out.println(sample.getClass().getSimpleName());
+			
+			if(obj.getKey().equals(sample.getClass().getSimpleName())) {
+				res = (CrudRepository<T,Long>)obj.getValue();
+				break;
+			}
 		}
+		
+		System.out.println("returning "+ res);
+
+		
 		return res;
 	}
 	
@@ -88,7 +99,7 @@ public class ManagerServiceGenerics<T> implements IManagerServiceGenerics<T>{
 	@Override
 	public T createEntity(T entity){
 		CrudRepository<T,Long> repo = getRepoDAO(entity);
-		return repo.save(entity);		
+		return repo.save(entity);
 	}
 	
 	

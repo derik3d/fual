@@ -35,7 +35,7 @@ public class PostDTO {
 	private UserDTO creator;
     
     @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+    private Date date = new Date();
     
     private String location;
     
@@ -43,8 +43,8 @@ public class PostDTO {
     @JoinColumn(nullable = false)//a post must have a challenge
     private ChallengeDTO challenge;
     
-    @ElementCollection
-    private List<String> imageLink= new ArrayList<>();
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> imageLink = new ArrayList<>();
 	
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="POST_USER_JTABLE")
@@ -53,9 +53,10 @@ public class PostDTO {
     private String description;
     
     @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(nullable=false)
     private PublicChatDTO chat;
     
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> tags = new HashSet<>();
 
 	public Long getId() {
