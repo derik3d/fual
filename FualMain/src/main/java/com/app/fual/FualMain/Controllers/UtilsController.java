@@ -2,6 +2,7 @@ package com.app.fual.FualMain.Controllers;
 
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,39 +14,114 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RestController
 @RequestMapping("utils")
 public class UtilsController {
+
+
+	@Value("${ftp.credentials.url}")
+    private String FTP_ADDRESS;
+	@Value("${ftp.credentials.user}")
+	private String LOGIN;
+	@Value("${ftp.credentials.pass}")
+	private String PSW;
 	
 	
+
 	@PostMapping("/")
 	public String handleFileUpload(@RequestParam("file") MultipartFile file,
+									@RequestParam("rename") String rename,
 	                               RedirectAttributes redirectAttributes) {
-	    String FTP_ADDRESS = "ftp://artificialreasongames.c1.biz";
-	    String LOGIN = "3085298";
-	    String PSW = "Putavida666";
+		
+		
+
+		System.out.println("cred");
+		System.out.println(FTP_ADDRESS);
+		System.out.println(LOGIN);
+		System.out.println(PSW);
 
 	    FTPClient con = null;
 
+	    System.out.print("preparing step");
+	    
 	    try {
 	        con = new FTPClient();
 	        con.connect(FTP_ADDRESS);
+	        
+
+		    System.out.print("stepaaaaa 35");
 
 	        if (con.login(LOGIN, PSW)) {
 	            con.enterLocalPassiveMode(); // important!
 	            con.setFileType(FTP.BINARY_FILE_TYPE);
-
-	            boolean result = con.storeFile(file.getOriginalFilename(), file.getInputStream());
+	            //
+	            boolean result = con.storeFile("artificialreasongames.c1.biz/datafual/"+rename, file.getInputStream());
 	            con.logout();
 	            con.disconnect();
+	            
+	            System.out.println(result+ " result");
+
 	            redirectAttributes.addFlashAttribute("message",
 	                    "You successfully uploaded " + file.getOriginalFilename() + "!");
 	            
-	            System.out.println("all is well "+ result);
+	            return "ok";
+	            
 	        }
 	    } catch (Exception e) {
+	    	
+	    	
+	    	
+	    	e.printStackTrace();
 	        redirectAttributes.addFlashAttribute("message",
 	                "Could not upload " + file.getOriginalFilename() + "!");
+	        
+	        //return "failed";
 	    }
+	       
+	    
 
-	    return "redirect:/";
+	    return "false";
+	    //return "redirect:/";
 	}
+
 	
+	
+	public String getFTP_ADDRESS() {
+		return FTP_ADDRESS;
+	}
+
+
+
+
+	public void setFTP_ADDRESS(String fTP_ADDRESS) {
+		FTP_ADDRESS = fTP_ADDRESS;
+	}
+
+
+
+
+	public String getLOGIN() {
+		return LOGIN;
+	}
+
+
+
+
+	public void setLOGIN(String lOGIN) {
+		LOGIN = lOGIN;
+	}
+
+
+
+
+	public String getPSW() {
+		return PSW;
+	}
+
+
+
+
+	public void setPSW(String pSW) {
+		PSW = pSW;
+	}
+
+
+
 }
