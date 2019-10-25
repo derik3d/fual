@@ -22,10 +22,12 @@ public class UtilsController {
 	private String LOGIN;
 	@Value("${ftp.credentials.pass}")
 	private String PSW;
+	@Value("${ftp.credentials.folder-data}")
+	private String FOLDER_DATA;
 	
 	
 
-	@PostMapping("/")
+	@PostMapping("uploadImage")
 	public String handleFileUpload(@RequestParam("file") MultipartFile file,
 									@RequestParam("rename") String rename,
 	                               RedirectAttributes redirectAttributes) {
@@ -47,7 +49,8 @@ public class UtilsController {
 	            con.enterLocalPassiveMode(); // important!
 	            con.setFileType(FTP.BINARY_FILE_TYPE);
 	            //
-	            boolean result = con.storeFile("artificialreasongames.c1.biz/datafual/"+rename, file.getInputStream());
+	            String fullURL = FOLDER_DATA+rename;
+	            boolean result = con.storeFile(fullURL, file.getInputStream());
 	            con.logout();
 	            con.disconnect();
 	            
@@ -56,7 +59,7 @@ public class UtilsController {
 	            redirectAttributes.addFlashAttribute("message",
 	                    "You successfully uploaded " + file.getOriginalFilename() + "!");
 	            
-	            return "ok";
+	            return fullURL;
 	            
 	        }
 	    } catch (Exception e) {
@@ -115,6 +118,18 @@ public class UtilsController {
 
 	public void setPSW(String pSW) {
 		PSW = pSW;
+	}
+
+
+
+	public String getFOLDER_DATA() {
+		return FOLDER_DATA;
+	}
+
+
+
+	public void setFOLDER_DATA(String fOLDER_DATA) {
+		FOLDER_DATA = fOLDER_DATA;
 	}
 
 
