@@ -5,6 +5,7 @@ package com.app.fual.FualMain.Controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,10 +14,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.fual.FualMain.DTO.ChallengeDTO;
+import com.app.fual.FualMain.DTO.CommentDTO;
 import com.app.fual.FualMain.DTO.PostDTO;
+import com.app.fual.FualMain.DTO.PrivateChatDTO;
 import com.app.fual.FualMain.DTO.UserDTO;
 import com.app.fual.FualMain.Interfaces.IManagerService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -90,24 +95,92 @@ public class CustomController {
     	
     }
     
-    @PostMapping("/createChallenge")
+    @PostMapping("createChallenge")
     public ResponseEntity postChallenge(
       @RequestBody ChallengeDTO challenge) {
       
 		challenge = iManagerService.createChallenge(challenge);
         
     	if (challenge == null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-    	else return new ResponseEntity<>(challenge,HttpStatus.OK);    }
+    	else return new ResponseEntity<>(challenge,HttpStatus.OK);
+	}
     
-    @PostMapping("/createPost")
+    
+    @PostMapping("createPost")
     public ResponseEntity postPost(
       @RequestBody PostDTO post) {
       
 		post = iManagerService.createPost(post);
     	
     	if (post == null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-    	else return new ResponseEntity<>(post,HttpStatus.OK);    }
+    	else return new ResponseEntity<>(post,HttpStatus.OK);
+    	
+    }
     
+    //****************************************************************************
+    
+    @PostMapping("commentPost/{id}")
+    public ResponseEntity<PostDTO> commentPost(
+    		@PathVariable(name="id") Long postId,
+    		@RequestBody CommentDTO comment) {
+      
+		PostDTO post = iManagerService.commentPost(postId, comment);
+    	
+    	if (post == null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	else return new ResponseEntity<>(post,HttpStatus.OK);
+    	
+    }
+    
+    @PostMapping("commentPrivateChat/{id}")
+    public ResponseEntity<PrivateChatDTO> commentPrivateChat(
+    		@PathVariable(name="id") Long privateChatId,
+    		@RequestBody CommentDTO comment) {
+      
+		PrivateChatDTO chat = iManagerService.commentPrivateChat(privateChatId, comment);
+    	
+    	if (chat == null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	else return new ResponseEntity<>(chat,HttpStatus.OK);
+    	
+    }
+    
+
+    
+    @PostMapping("likeComment/{commentId}/{userId}")
+    public ResponseEntity<CommentDTO> likeComment(
+    		@PathVariable(name="commentId") Long commentId,
+    		@PathVariable(name="userId") Long userId) {
+      
+		CommentDTO comment = iManagerService.likeComment(commentId, userId);
+    	
+    	if (comment == null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	else return new ResponseEntity<>(comment,HttpStatus.OK);
+    	
+    }
+    
+
+    
+    @PostMapping("likePost/{postId}/{userId}")
+    public ResponseEntity<PostDTO> likePost(
+    		@PathVariable(name="postId") Long postId,
+    		@PathVariable(name="userId") Long userId) {
+      
+		PostDTO post = iManagerService.likePost(postId, userId);
+    	
+    	if (post == null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	else return new ResponseEntity<>(post,HttpStatus.OK);
+    	
+    }
+    
+    @PostMapping("createPrivateChat")
+    public ResponseEntity<PrivateChatDTO> createPrivateChat(
+    		@RequestBody List<Long> userIds) {
+      
+		PrivateChatDTO chat = iManagerService.createPrivateChat(userIds);
+    	
+    	if (chat == null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	else return new ResponseEntity<>(chat,HttpStatus.OK);
+    	
+    }
     
     
 

@@ -8,6 +8,6 @@ import com.app.fual.FualMain.DTO.UserDTO;
 
 @RestController
 @RequestMapping("personalChat")
-public class PersonalChatAPI extends GeneralAPI<PrivateChatDTO>{
+public class PrivateChatAPI extends GeneralAPI<PrivateChatDTO>{
 
 }

@@ -1,17 +1,24 @@
 package com.app.fual.FualMain.Services;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.fual.FualMain.DAO.IChallengeDAO;
 import com.app.fual.FualMain.DAO.ICommentDAO;
-import com.app.fual.FualMain.DAO.IPersonalChatDAO;
+import com.app.fual.FualMain.DAO.IPrivateChatDAO;
 import com.app.fual.FualMain.DAO.IPostDAO;
 import com.app.fual.FualMain.DAO.IPublicChatDAO;
 import com.app.fual.FualMain.DAO.IUserDAO;
 import com.app.fual.FualMain.DAO.IUserDataDAO;
 import com.app.fual.FualMain.DTO.ChallengeDTO;
+import com.app.fual.FualMain.DTO.CommentDTO;
 import com.app.fual.FualMain.DTO.PostDTO;
+import com.app.fual.FualMain.DTO.PrivateChatDTO;
+import com.app.fual.FualMain.DTO.PublicChatDTO;
 import com.app.fual.FualMain.DTO.UserDTO;
 import com.app.fual.FualMain.DTO.UserDataDTO;
 import com.app.fual.FualMain.Interfaces.IManagerService;
@@ -26,7 +33,7 @@ public class ManagerService implements IManagerService{
 	ICommentDAO iCommentDAO;
 
 	@Autowired
-	IPersonalChatDAO iPersonalChatDAO;
+	IPrivateChatDAO iPrivateChatDAO;
 
 	@Autowired
 	IPostDAO iPostDAO;
@@ -87,6 +94,84 @@ public class ManagerService implements IManagerService{
 		UserDTO user = findUserWithName(userName);
 		post.setCreator(user);
 		return iPostDAO.save(post);
+	}
+
+
+	@Override
+	public PostDTO commentPost(Long postId, CommentDTO comment) {
+		
+		PublicChatDTO chat = iPostDAO.findById(postId).get().getChat();
+		
+		comment = iCommentDAO.save(comment);
+		
+		Set<CommentDTO> comments = chat.getComments();
+		comments.add(comment);
+		chat.setComments(comments);
+		
+		Set<UserDTO> participants = chat.getParticipants();
+		participants.add(comment.getSender());
+		chat.setParticipants(participants);
+		
+		iPublicChatDAO.save(chat);
+		
+		return iPostDAO.findById(postId).get();
+	}
+
+
+	@Override
+	public PrivateChatDTO commentPrivateChat(Long privateChatId, CommentDTO comment) {
+		
+		Optional<PrivateChatDTO> chat = iPrivateChatDAO.findById(privateChatId);
+		
+		comment = iCommentDAO.save(comment);
+		
+		Set<CommentDTO> comments = chat.get().getComments();
+		comments.add(comment);
+		chat.get().setComments(comments);
+		
+		Set<UserDTO> participants = chat.get().getParticipants();
+		participants.add(comment.getSender());
+		chat.get().setParticipants(participants);
+		
+		PrivateChatDTO result = iPrivateChatDAO.save(chat.get());
+		
+		return result;
+	}
+
+
+	@Override
+	public CommentDTO likeComment(Long commentId, Long userId) {
+		UserDTO liker = iUserDAO.findById(userId).get();
+		CommentDTO comment = iCommentDAO.findById(commentId).get();
+		Set<UserDTO> likers = comment.getLikedBy();
+		likers.add(liker);
+		comment.setLikedBy(likers);
+		return iCommentDAO.save(comment);
+	}
+
+
+	@Override
+	public PostDTO likePost(Long postId, Long userId) {
+		UserDTO liker = iUserDAO.findById(userId).get();
+		PostDTO post = iPostDAO.findById(postId).get();
+		Set<UserDTO> likers = post.getLikedBy();
+		likers.add(liker);
+		post.setLikedBy(likers);
+		return iPostDAO.save(post);
+	}
+
+
+	@Override
+	public PrivateChatDTO createPrivateChat(List<Long> userIds) {
+		PrivateChatDTO privateChat = new PrivateChatDTO();
+		Set<UserDTO> participants = privateChat.getParticipants();
+		for(Long userId: userIds) {
+			Optional<UserDTO> user = iUserDAO.findById(userId);
+			if(user.isPresent())
+				participants.add(user.get());
+		}
+		privateChat.setParticipants(participants);
+		return iPrivateChatDAO.save(privateChat);
 	}
 	
 

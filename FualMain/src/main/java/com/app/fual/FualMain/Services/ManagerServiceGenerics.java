@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 import com.app.fual.FualMain.DAO.IChallengeDAO;
 import com.app.fual.FualMain.DAO.ICommentDAO;
-import com.app.fual.FualMain.DAO.IPersonalChatDAO;
+import com.app.fual.FualMain.DAO.IPrivateChatDAO;
 import com.app.fual.FualMain.DAO.IPostDAO;
 import com.app.fual.FualMain.DAO.IPublicChatDAO;
 import com.app.fual.FualMain.DAO.IUserDAO;
@@ -39,7 +39,7 @@ public class ManagerServiceGenerics<T> implements IManagerServiceGenerics<T>{
 	ICommentDAO iCommentDAO;
 
 	@Autowired
-	IPersonalChatDAO iPersonalChatDAO;
+	IPrivateChatDAO iPersonalChatDAO;
 
 	@Autowired
 	IPostDAO iPostDAO;
