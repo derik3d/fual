@@ -30,12 +30,7 @@ public class UtilsController {
 									@RequestParam("rename") String rename,
 	                               RedirectAttributes redirectAttributes) {
 		
-		
-
-		System.out.println("cred");
-		System.out.println(FTP_ADDRESS);
-		System.out.println(LOGIN);
-		System.out.println(PSW);
+	
 
 	    FTPClient con = null;
 
