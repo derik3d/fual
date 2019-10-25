@@ -62,6 +62,26 @@ public abstract class GeneralAPI<T> {
     	else return new ResponseEntity<>(entitySample,HttpStatus.OK);
 	}
 	
+    @GetMapping("findOneByExample")
+    public ResponseEntity<T> getOneByEntity(
+      @RequestBody T entity) {
+      
+    	entity = iManagerServiceGenerics.findOneByExample(entity);
+    	
+    	if (entity == null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	else return new ResponseEntity<>(entity,HttpStatus.OK);
+	}
+	
+    @GetMapping("findAllByExample")
+    public ResponseEntity<List<T>> getAllByEntity(
+      @RequestBody T entity) {
+      
+    	List<T> result= iManagerServiceGenerics.findAllByExample(entity);
+    	
+    	if (result == null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	else return new ResponseEntity<>(result,HttpStatus.OK);
+	}
+	
     @PostMapping
     public ResponseEntity<T> addEntity(
       @RequestBody T entity) {

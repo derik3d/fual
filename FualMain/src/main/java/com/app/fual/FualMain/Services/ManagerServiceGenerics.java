@@ -9,7 +9,9 @@ import java.util.Optional;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.QueryByExampleExecutor;
 import org.springframework.stereotype.Service;
 
 import com.app.fual.FualMain.DAO.IChallengeDAO;
@@ -146,6 +148,22 @@ public class ManagerServiceGenerics<T> implements IManagerServiceGenerics<T>{
 	public List<T> getAll(T entitySample) {
 		CrudRepository<T,Long> repo = getRepoDAO(entitySample);
 		return (List<T>) repo.findAll();
+	}
+
+
+	@Override
+	public List<T> findAllByExample(T exampleObject) {
+		@SuppressWarnings("unchecked")
+		QueryByExampleExecutor<T> repo = (QueryByExampleExecutor<T>)getRepoDAO(exampleObject);
+		return (List<T>) repo.findAll(Example.of(exampleObject));
+	}
+
+
+	@Override
+	public T findOneByExample(T exampleObject) {
+		@SuppressWarnings("unchecked")
+		QueryByExampleExecutor<T> repo = (QueryByExampleExecutor<T>)getRepoDAO(exampleObject);
+		return repo.findOne(Example.of(exampleObject)).orElse(null);
 	}
 
 }
