@@ -13,5 +13,7 @@ public interface IManagerServiceGenerics<T>{
 	//NEW METHODS
 	List<T> findAllByExample(T exampleObject);
 	T findOneByExample(T exampleObject);
+	
+	T patchEntity(Long id, T patchEntity);
 
 }

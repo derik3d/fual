@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -113,6 +114,17 @@ public abstract class GeneralAPI<T> {
     	if (result)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     	else return ResponseEntity.ok(HttpStatus.OK);
   }
-    
 
+    
+    @SuppressWarnings("rawtypes")
+	@PatchMapping("{id}")
+    public ResponseEntity patchEntity(
+    	      @PathVariable(name="id") Long id,
+    	      @RequestBody T patchEntity) {
+    	
+	patchEntity = iManagerServiceGenerics.patchEntity(id, patchEntity);
+  	
+    	if (patchEntity==null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	else return ResponseEntity.ok(HttpStatus.OK);
+    }    
 }

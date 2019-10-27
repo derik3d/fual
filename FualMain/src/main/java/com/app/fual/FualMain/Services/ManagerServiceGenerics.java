@@ -8,11 +8,15 @@ import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
+import org.hibernate.internal.util.beans.BeanInfoHelper;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.QueryByExampleExecutor;
 import org.springframework.stereotype.Service;
+
 
 import com.app.fual.FualMain.DAO.IChallengeDAO;
 import com.app.fual.FualMain.DAO.ICommentDAO;
@@ -31,6 +35,8 @@ import com.app.fual.FualMain.Interfaces.IManagerServiceGenerics;
 
 @Service
 public class ManagerServiceGenerics<T> implements IManagerServiceGenerics<T>{
+	
+    final protected ModelMapper modelMapper = new ModelMapper();
 	
 	@Autowired
 	IChallengeDAO iChallengeDAO;
@@ -165,5 +171,18 @@ public class ManagerServiceGenerics<T> implements IManagerServiceGenerics<T>{
 		QueryByExampleExecutor<T> repo = (QueryByExampleExecutor<T>)getRepoDAO(exampleObject);
 		return repo.findOne(Example.of(exampleObject)).orElse(null);
 	}
+	
+	
+	@Override
+	public T patchEntity(Long id, T updateEntity){
+		CrudRepository<T,Long> repo = getRepoDAO(updateEntity);
+		T existing = repo.findById(id).get();
+		modelMapper.getConfiguration().setSkipNullEnabled(true);
+		modelMapper.map(updateEntity, existing);
+		return repo.save(existing);
+	
+	}
+    
+
 
 }
