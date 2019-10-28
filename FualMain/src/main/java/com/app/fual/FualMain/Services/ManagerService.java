@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.app.fual.FualMain.DAO.IChallengeDAO;
@@ -172,6 +173,62 @@ public class ManagerService implements IManagerService{
 		}
 		privateChat.setParticipants(participants);
 		return iPrivateChatDAO.save(privateChat);
+	}
+
+
+
+	@Override
+	public UserDataDTO getUserDataWithUserId(Long id) {
+		
+		UserDTO userExample = new UserDTO();
+		userExample.setId(id);
+		UserDataDTO dataExample = new UserDataDTO();
+		
+		UserDataDTO res = iUserDataDAO.findOne(Example.of(dataExample)).get();
+
+		
+		return res;
+	}
+
+	@Override
+	public boolean followUser(Long follower, Long followed) {
+		
+
+		UserDTO followerUser = iUserDAO.findById(follower).get();
+		UserDTO followedUser = iUserDAO.findById(followed).get();
+
+		UserDataDTO followerUserData = getUserDataWithUserId(follower);
+		UserDataDTO followedUserData = getUserDataWithUserId(followed);
+		
+
+		followerUserData.getFollows().add(followedUser);
+		followedUserData.getFollowedBy().add(followerUser);
+
+		iUserDataDAO.save(followerUserData);
+		iUserDataDAO.save(followedUserData);
+		
+		return true;
+	}
+
+
+	@Override
+	public boolean unFollowUser(Long follower, Long followed) {
+		
+
+		UserDTO followerUser = iUserDAO.findById(follower).get();
+		UserDTO followedUser = iUserDAO.findById(followed).get();
+
+		UserDataDTO followerUserData = getUserDataWithUserId(follower);
+		UserDataDTO followedUserData = getUserDataWithUserId(followed);
+		
+
+		followerUserData.getFollows().remove(followedUser);
+		followedUserData.getFollowedBy().remove(followerUser);
+
+		iUserDataDAO.save(followerUserData);
+		iUserDataDAO.save(followedUserData);
+		
+		return true;
 	}
 	
 

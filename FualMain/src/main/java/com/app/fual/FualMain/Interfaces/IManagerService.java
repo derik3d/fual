@@ -31,4 +31,9 @@ public interface IManagerService {
 	public PrivateChatDTO createPrivateChat(List<Long> userIds);
 	
 	
+	public UserDataDTO getUserDataWithUserId(Long id);
+	public boolean followUser(Long follower, Long followed);
+	public boolean unFollowUser(Long follower, Long followed);
+	
+	
 }

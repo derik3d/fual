@@ -42,9 +42,9 @@ public class UserDataDTO {
 	
 	private String gender;
 	
-	private int age;
+	private Integer age;
 	
-	private int level;
+	private Integer level;
     
 	@ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="FOLLOWS_USERDATA_JTABLE")

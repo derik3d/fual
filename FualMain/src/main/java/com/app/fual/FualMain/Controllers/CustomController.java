@@ -18,6 +18,7 @@ import com.app.fual.FualMain.DTO.CommentDTO;
 import com.app.fual.FualMain.DTO.PostDTO;
 import com.app.fual.FualMain.DTO.PrivateChatDTO;
 import com.app.fual.FualMain.DTO.UserDTO;
+import com.app.fual.FualMain.DTO.UserDataDTO;
 import com.app.fual.FualMain.Interfaces.IManagerService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -89,6 +90,20 @@ public class CustomController {
     public  ResponseEntity<UserDTO>  getUserByName(@RequestParam(name="name", required=true) String name){
     	
     	UserDTO res = iManagerService.findUserWithName(name);
+    	
+    	if (res == null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	else return new ResponseEntity<>(res,HttpStatus.OK);
+    	
+    }
+    
+    
+    @GetMapping(
+    		value="/getUserDataById/{id}"
+    		)
+    
+    public  ResponseEntity<UserDataDTO>  getUserDataById(@PathVariable(name="id", required=true) Long id){
+    	
+    	UserDataDTO res = iManagerService.getUserDataWithUserId(id);
     	
     	if (res == null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     	else return new ResponseEntity<>(res,HttpStatus.OK);
@@ -179,6 +194,32 @@ public class CustomController {
     	
     	if (chat == null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     	else return new ResponseEntity<>(chat,HttpStatus.OK);
+    	
+    }
+    
+    @SuppressWarnings("rawtypes")
+	@PostMapping("followUser/{follower}/{followed}")
+    public ResponseEntity follow(
+    		@PathVariable(name="follower") Long follower,
+			@PathVariable(name="follower") Long followed) {
+      
+		boolean res = iManagerService.followUser(follower, followed);
+    	
+    	if (res)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	else return ResponseEntity.ok(HttpStatus.OK);
+    	
+    }
+    
+    @SuppressWarnings("rawtypes")
+	@PostMapping("unFollowUser/{follower}/{followed}")
+    public ResponseEntity unFollow(
+    		@PathVariable(name="follower") Long follower,
+			@PathVariable(name="follower") Long followed) {
+      
+		boolean res = iManagerService.unFollowUser(follower, followed);
+    	
+    	if (res)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	else return ResponseEntity.ok(HttpStatus.OK);
     	
     }
     
