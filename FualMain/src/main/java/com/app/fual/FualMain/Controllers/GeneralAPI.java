@@ -63,7 +63,7 @@ public abstract class GeneralAPI<T> {
     	else return new ResponseEntity<>(entitySample,HttpStatus.OK);
 	}
 	
-    @GetMapping("findOneByExample")
+    @PostMapping("findOneByExample")
     public ResponseEntity<T> getOneByEntity(
       @RequestBody T entity) {
       
@@ -73,7 +73,7 @@ public abstract class GeneralAPI<T> {
     	else return new ResponseEntity<>(entity,HttpStatus.OK);
 	}
 	
-    @GetMapping("findAllByExample")
+    @PostMapping("findAllByExample")
     public ResponseEntity<List<T>> getAllByEntity(
       @RequestBody T entity) {
       
@@ -117,7 +117,7 @@ public abstract class GeneralAPI<T> {
 
     
     @SuppressWarnings("rawtypes")
-	@PatchMapping("{id}")
+	@PostMapping("patch/{id}")
     public ResponseEntity patchEntity(
     	      @PathVariable(name="id") Long id,
     	      @RequestBody T patchEntity) {
