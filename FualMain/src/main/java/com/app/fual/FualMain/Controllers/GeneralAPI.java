@@ -103,7 +103,7 @@ public abstract class GeneralAPI<T> {
     }
     
     @SuppressWarnings("rawtypes")
-	@DeleteMapping
+	@DeleteMapping("{id}")
     public ResponseEntity delete(
   	      @PathVariable(name="id") Long id) throws InstantiationException, IllegalAccessException {
     	
