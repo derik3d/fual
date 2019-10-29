@@ -45,6 +45,8 @@ public class UserDataDTO {
 	private Integer age;
 	
 	private Integer level;
+	
+	private Integer expLevel;
     
 	@ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="FOLLOWS_USERDATA_JTABLE")
@@ -150,6 +152,14 @@ public class UserDataDTO {
 
 	public void setLevel(int level) {
 		this.level = level;
+	}
+
+	public int getExpLevel() {
+		return expLevel;
+	}
+
+	public void setExpLevel(int expLevel) {
+		this.expLevel = expLevel;
 	}
 
 	public Set<UserDTO> getFollows() {
@@ -265,6 +275,8 @@ public class UserDataDTO {
 			return false;
 		if (level != other.level)
 			return false;
+		if (expLevel != other.expLevel)
+			return false;
 		if (privateChats == null) {
 			if (other.privateChats != null)
 				return false;
@@ -302,7 +314,7 @@ public class UserDataDTO {
 	public String toString() {
 		return "UserDataDTO [id=" + id + ", user=" + user + ", isTrainer=" + isTrainer + ", tag=" + tag
 				+ ", profileImageLink=" + profileImageLink + ", userInfo=" + userInfo + ", city=" + city + ", country="
-				+ country + ", gender=" + gender + ", age=" + age + ", level=" + level + ", follows=" + follows
+				+ country + ", gender=" + gender + ", age=" + age + ", level=" + level + ", expLevel=" + expLevel + ", follows=" + follows
 				+ ", followedBy=" + followedBy + ", postsCreated=" + postsCreated + ", privateChats=" + privateChats
 				+ ", blockedUsers=" + blockedUsers + "]";
 	}
