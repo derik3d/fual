@@ -194,10 +194,38 @@ public class FualMainApplicationTests {
 		userData1.setFollowedBy(followedBy);
 		userData1.setFollows(follows);
 		
+		System.out.println(iManagerServiceGenericsUserDataDTO.createEntity(userData1));
+
+		
+		//follows unfollows
+		
+		UserDTO userObtained3 = iManagerServiceGenericsUserDTO.findEntity(userr1, 3l);
+		
+		UserDataDTO userData3 = new UserDataDTO();
+		userData3.setUser(userObtained3);
+		userData3.setAge(17);
+		userData3.setUserInfo("very good se");
+		userData3.setCity("ta");
+		userData3.setCountry("Coloa");
+		userData3.setGender("mn");
+		userData3.setLevel(2);
+		userData3.setProfileImageLink("http://mico.com/foto1");
+		userData3.setTag("@cahoria");
+		
+		
+		System.out.println(iManagerServiceGenericsUserDataDTO.createEntity(userData3));
+
+
+		iManagerService.followUser(1l, 1l);
+		iManagerService.followUser(3l, 1l);
+		iManagerService.unFollowUser(3l, 1l);
+		
+		
+		
+		
 		//AUTO userData1.setPersonalChats(personalChats);
 		//AUTO userData1.setPostsCreated(postsCreated);
 		
-		System.out.println(iManagerServiceGenericsUserDataDTO.createEntity(userData1));
 		
 
 		//-----------------------------

@@ -138,27 +138,27 @@ public class UserDataDTO {
 		this.gender = gender;
 	}
 
-	public int getAge() {
+	public Integer getAge() {
 		return age;
 	}
 
-	public void setAge(int age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 
-	public int getLevel() {
+	public Integer getLevel() {
 		return level;
 	}
 
-	public void setLevel(int level) {
+	public void setLevel(Integer level) {
 		this.level = level;
 	}
 
-	public int getExpLevel() {
+	public Integer getExpLevel() {
 		return expLevel;
 	}
 
-	public void setExpLevel(int expLevel) {
+	public void setExpLevel(Integer expLevel) {
 		this.expLevel = expLevel;
 	}
 
@@ -186,11 +186,11 @@ public class UserDataDTO {
 		this.postsCreated = postsCreated;
 	}
 
-	public Set<PrivateChatDTO> getprivateChats() {
+	public Set<PrivateChatDTO> getPrivateChats() {
 		return privateChats;
 	}
 
-	public void setprivateChats(Set<PrivateChatDTO> privateChats) {
+	public void setPrivateChats(Set<PrivateChatDTO> privateChats) {
 		this.privateChats = privateChats;
 	}
 
@@ -206,18 +206,19 @@ public class UserDataDTO {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + age;
+		result = prime * result + ((age == null) ? 0 : age.hashCode());
 		result = prime * result + ((blockedUsers == null) ? 0 : blockedUsers.hashCode());
 		result = prime * result + ((city == null) ? 0 : city.hashCode());
 		result = prime * result + ((country == null) ? 0 : country.hashCode());
+		result = prime * result + ((expLevel == null) ? 0 : expLevel.hashCode());
 		result = prime * result + ((followedBy == null) ? 0 : followedBy.hashCode());
 		result = prime * result + ((follows == null) ? 0 : follows.hashCode());
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + (isTrainer ? 1231 : 1237);
-		result = prime * result + level;
-		result = prime * result + ((privateChats == null) ? 0 : privateChats.hashCode());
+		result = prime * result + ((level == null) ? 0 : level.hashCode());
 		result = prime * result + ((postsCreated == null) ? 0 : postsCreated.hashCode());
+		result = prime * result + ((privateChats == null) ? 0 : privateChats.hashCode());
 		result = prime * result + ((profileImageLink == null) ? 0 : profileImageLink.hashCode());
 		result = prime * result + ((tag == null) ? 0 : tag.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
@@ -234,7 +235,10 @@ public class UserDataDTO {
 		if (getClass() != obj.getClass())
 			return false;
 		UserDataDTO other = (UserDataDTO) obj;
-		if (age != other.age)
+		if (age == null) {
+			if (other.age != null)
+				return false;
+		} else if (!age.equals(other.age))
 			return false;
 		if (blockedUsers == null) {
 			if (other.blockedUsers != null)
@@ -250,6 +254,11 @@ public class UserDataDTO {
 			if (other.country != null)
 				return false;
 		} else if (!country.equals(other.country))
+			return false;
+		if (expLevel == null) {
+			if (other.expLevel != null)
+				return false;
+		} else if (!expLevel.equals(other.expLevel))
 			return false;
 		if (followedBy == null) {
 			if (other.followedBy != null)
@@ -273,19 +282,20 @@ public class UserDataDTO {
 			return false;
 		if (isTrainer != other.isTrainer)
 			return false;
-		if (level != other.level)
-			return false;
-		if (expLevel != other.expLevel)
-			return false;
-		if (privateChats == null) {
-			if (other.privateChats != null)
+		if (level == null) {
+			if (other.level != null)
 				return false;
-		} else if (!privateChats.equals(other.privateChats))
+		} else if (!level.equals(other.level))
 			return false;
 		if (postsCreated == null) {
 			if (other.postsCreated != null)
 				return false;
 		} else if (!postsCreated.equals(other.postsCreated))
+			return false;
+		if (privateChats == null) {
+			if (other.privateChats != null)
+				return false;
+		} else if (!privateChats.equals(other.privateChats))
 			return false;
 		if (profileImageLink == null) {
 			if (other.profileImageLink != null)
@@ -314,14 +324,11 @@ public class UserDataDTO {
 	public String toString() {
 		return "UserDataDTO [id=" + id + ", user=" + user + ", isTrainer=" + isTrainer + ", tag=" + tag
 				+ ", profileImageLink=" + profileImageLink + ", userInfo=" + userInfo + ", city=" + city + ", country="
-				+ country + ", gender=" + gender + ", age=" + age + ", level=" + level + ", expLevel=" + expLevel + ", follows=" + follows
-				+ ", followedBy=" + followedBy + ", postsCreated=" + postsCreated + ", privateChats=" + privateChats
-				+ ", blockedUsers=" + blockedUsers + "]";
+				+ country + ", gender=" + gender + ", age=" + age + ", level=" + level + ", expLevel=" + expLevel
+				+ ", follows=" + follows + ", followedBy=" + followedBy + ", postsCreated=" + postsCreated
+				+ ", privateChats=" + privateChats + ", blockedUsers=" + blockedUsers + "]";
 	}
-	
-	////-------------------------------------------------------------
 
-	
 	
 	
 }

@@ -96,6 +96,20 @@ public class CustomController {
     	
     }
     
+    //********
+    @RequestMapping(
+    		value="/getUserDataByUserId/"
+    		)
+    
+    public  ResponseEntity<UserDataDTO>  getUserDataByUserId(@RequestParam(name="userid", required=true) Long userid){
+    	
+    	UserDataDTO res = iManagerService.getUserDataWithUserId(userid);
+    	
+    	if (res == null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	else return new ResponseEntity<>(res,HttpStatus.OK);
+    	
+    }
+    
     
     @GetMapping(
     		value="/getUserDataById/{id}"

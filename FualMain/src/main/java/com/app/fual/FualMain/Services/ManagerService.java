@@ -179,15 +179,19 @@ public class ManagerService implements IManagerService{
 
 	@Override
 	public UserDataDTO getUserDataWithUserId(Long id) {
+		//NEED TO IMPROVE
 		
-		UserDTO userExample = new UserDTO();
-		userExample.setId(id);
-		UserDataDTO dataExample = new UserDataDTO();
+		System.out.println("asdfasdfasdfasdf");
+			
+			for(UserDataDTO  userData : iUserDataDAO.findAll()) {
+				System.out.println(userData);
+				if(userData.getUser().getId() == id)
+					return userData;
+				}
 		
-		UserDataDTO res = iUserDataDAO.findOne(Example.of(dataExample)).get();
-
+		System.out.println("asdfasdfasdfasdf");
 		
-		return res;
+		return null;
 	}
 
 	@Override
@@ -200,6 +204,8 @@ public class ManagerService implements IManagerService{
 		UserDataDTO followerUserData = getUserDataWithUserId(follower);
 		UserDataDTO followedUserData = getUserDataWithUserId(followed);
 		
+		System.out.println(followerUserData);
+		followerUserData.getFollows().size();
 
 		followerUserData.getFollows().add(followedUser);
 		followedUserData.getFollowedBy().add(followerUser);
