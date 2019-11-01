@@ -11,5 +11,7 @@ import com.app.fual.FualMain.DTO.UserDataDTO;
 
 @Repository
 public interface IUserDataDAO extends CrudRepository<UserDataDTO, Long>, QueryByExampleExecutor<UserDataDTO>{
+
+	Optional<UserDataDTO> findByUser_Id(Long id);
 	
 }

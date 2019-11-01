@@ -182,16 +182,16 @@ public class ManagerService implements IManagerService{
 		//NEED TO IMPROVE
 		
 		System.out.println("asdfasdfasdfasdf");
-			
+			/*
 			for(UserDataDTO  userData : iUserDataDAO.findAll()) {
 				System.out.println(userData);
 				if(userData.getUser().getId() == id)
 					return userData;
 				}
-		
+		*/
 		System.out.println("asdfasdfasdfasdf");
 		
-		return null;
+		return iUserDataDAO.findByUser_Id(id).get();
 	}
 
 	@Override
