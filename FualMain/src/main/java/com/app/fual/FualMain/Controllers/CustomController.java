@@ -215,7 +215,7 @@ public class CustomController {
 	@PostMapping("followUser/{follower}/{followed}")
     public ResponseEntity follow(
     		@PathVariable(name="follower") Long follower,
-			@PathVariable(name="follower") Long followed) {
+			@PathVariable(name="followed") Long followed) {
       
 		boolean res = iManagerService.followUser(follower, followed);
     	
@@ -228,7 +228,7 @@ public class CustomController {
 	@PostMapping("unFollowUser/{follower}/{followed}")
     public ResponseEntity unFollow(
     		@PathVariable(name="follower") Long follower,
-			@PathVariable(name="follower") Long followed) {
+			@PathVariable(name="followed") Long followed) {
       
 		boolean res = iManagerService.unFollowUser(follower, followed);
     	
