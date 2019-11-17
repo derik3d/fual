@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.app.fual.FualMain.DTO.PrivateChatDTO;
 
 @Repository
-public interface IPrivateChatDAO extends IGeneralDAO<PrivateChatDTO, Long>{
-	
+public interface IPrivateChatDAO extends CrudRepository<PrivateChatDTO, Long>, QueryByExampleExecutor<PrivateChatDTO>,
+PagingAndSortingRepository<PrivateChatDTO,Long>{
 	
 }

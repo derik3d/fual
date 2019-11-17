@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 import com.app.fual.FualMain.DTO.UserDTO;
 
 @Repository
-public interface IUserDAO extends IGeneralDAO<UserDTO, Long>{
-	
+public interface IUserDAO extends CrudRepository<UserDTO, Long>, QueryByExampleExecutor<UserDTO>, PagingAndSortingRepository<UserDTO, Long>{
+
 	UserDTO findByName(String name);
 	
 }

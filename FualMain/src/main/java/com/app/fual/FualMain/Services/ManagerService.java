@@ -248,7 +248,7 @@ public class ManagerService implements IManagerService{
 		
 		Pageable pageable = PageRequest.of(page, howMany, Sort.by("date").descending());
 	
-		return iPostDAO.findAllByCreatorIn(follows, pageable);
+		return (List<PostDTO>) iPostDAO.findAllByCreatorIn(follows, pageable);
 		
 	}
 	

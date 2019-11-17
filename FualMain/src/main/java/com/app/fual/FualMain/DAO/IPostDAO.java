@@ -13,7 +13,8 @@ import com.app.fual.FualMain.DTO.PostDTO;
 import com.app.fual.FualMain.DTO.UserDTO;
 
 @Repository
-public interface IPostDAO extends IGeneralDAO<PostDTO, Long>{
+public interface IPostDAO extends CrudRepository<PostDTO, Long>, QueryByExampleExecutor<PostDTO>,
+PagingAndSortingRepository<PostDTO,Long>{
 
 	List<PostDTO> findAllByCreatorIn(Set<UserDTO> follows, Pageable pageable);
 	
