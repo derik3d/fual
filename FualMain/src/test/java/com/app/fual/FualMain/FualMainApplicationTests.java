@@ -1,5 +1,6 @@
 package com.app.fual.FualMain;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -381,16 +382,48 @@ public class FualMainApplicationTests {
 		
 		iManagerServiceGenericsPublicChatDTO.updateEntity(postChatRetrieved.getId(), postChatRetrieved);
 		
-		
+
 		String numFollowers = iManagerServiceGenericsUserDataDTO.sizeOfCollection(userData1, userData1.getId(), "followedBy").getResponse();
 		
 		if(numFollowers instanceof Object)
 			System.out.print("numberOfFollowers " + numFollowers );
 		else
 			System.out.print("NOPE");
+		
+
+		Collection coll = iManagerServiceGenericsUserDataDTO.getCollection(userData1, userData1.getId(), "followedBy", 1 , 0);
+		
+		if(coll instanceof Object)
+			System.out.print("1 0 " + coll );
+		else
+			System.out.print("NOPE");
+
+
+		 coll = iManagerServiceGenericsUserDataDTO.getCollection(userData1, userData1.getId(), "followedBy", 1 , 1);
+		
+		if(coll instanceof Object)
+			System.out.print("1 1 " + coll );
+		else
+			System.out.print("NOPE");
+
 
 
 		
+		 coll = iManagerServiceGenericsUserDataDTO.getCollection(userData1, userData1.getId(), "followedBy", 2 , 0);
+		
+		if(coll instanceof Object)
+			System.out.print("2 0 " + coll );
+		else
+			System.out.print("NOPE");
+
+		
+		 coll = iManagerServiceGenericsUserDataDTO.getCollection(userData1, userData1.getId(), "followedBy", -1 , 0);
+		
+		if(coll instanceof Object)
+			System.out.print("-1 0 " + coll );
+		else
+			System.out.print("NOPE");
+
 		
 		System.out.print("");
 		//

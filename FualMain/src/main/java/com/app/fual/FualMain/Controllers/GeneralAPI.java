@@ -1,7 +1,10 @@
 package com.app.fual.FualMain.Controllers;
 
 import java.lang.reflect.ParameterizedType;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
@@ -179,5 +182,27 @@ public abstract class GeneralAPI<T> {
     	else return new ResponseEntity<>(result,HttpStatus.OK);
 	}
 	
+    
+
+	
+    @GetMapping("{id}/collectionData/{collectionName}/{size}/{page}")
+    public ResponseEntity<Collection> getCollectionData(
+    	      @PathVariable(name="id") Long id,
+      	      @PathVariable(name="size") int size,
+      	      @PathVariable(name="page") int page,
+    	      @PathVariable(name="collectionName") String collectionName
+      ) throws InstantiationException, IllegalAccessException {
+    	    	
+		T entitySample = type.newInstance();
+    	
+    	Collection collection = iManagerServiceGenerics.getCollection( entitySample , id, collectionName, size, page);
+    	
+    	System.out.println(collection.getClass());
+    	
+    	//List<Object> collection = new ArrayList<>();
+    	
+    	if (collection == null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	else return new ResponseEntity<>(collection,HttpStatus.OK);
+	}
     
 }

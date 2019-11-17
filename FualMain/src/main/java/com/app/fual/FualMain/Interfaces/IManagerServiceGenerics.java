@@ -1,9 +1,11 @@
 package com.app.fual.FualMain.Interfaces;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.data.domain.Pageable;
 
+import com.app.fual.FualMain.DTO.UserDataDTO;
 import com.app.fual.FualMain.UtilEntities.MiniResponse;
 
 public interface IManagerServiceGenerics<T>{
@@ -24,5 +26,6 @@ public interface IManagerServiceGenerics<T>{
 	
 	MiniResponse sizeOfCollection(T entitySample, Long entityId, String fieldName);
 	List<T> findAllByExamplePageable(T exampleObject, Pageable pageable);
+	Collection getCollection(T entitySample, Long entityId, String fieldName, int size, int page);
 
 }

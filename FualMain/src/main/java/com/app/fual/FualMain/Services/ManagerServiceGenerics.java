@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -19,7 +20,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.QueryByExampleExecutor;
 import org.springframework.stereotype.Service;
@@ -96,8 +99,8 @@ public class ManagerServiceGenerics<T> implements IManagerServiceGenerics<T>{
 		
 		for(Map.Entry<String,CrudRepository> obj: reposMap.entrySet()) {
 			
-			System.out.println(obj.getKey());
-			System.out.println(sample.getClass().getSimpleName());
+			//System.out.println(obj.getKey());
+			//System.out.println(sample.getClass().getSimpleName());
 			
 			if(obj.getKey().equals(sample.getClass().getSimpleName())) {
 				res = (CrudRepository<T,Long>)obj.getValue();
@@ -248,5 +251,89 @@ public class ManagerServiceGenerics<T> implements IManagerServiceGenerics<T>{
 		return repo.findAll(Example.of(exampleObject), pageable).getContent();
 	}
 
+
+
+	@Override
+	public Collection getCollection(T entitySample, Long entityId, String fieldName, int size, int page) {
+
+		T entity = findEntity(entitySample, entityId);
+		
+		MiniResponse mr = new MiniResponse();
+		mr.setRequest(entitySample.getClass()+" "+entityId+" "+fieldName);
+		
+		try {
+			
+			List<Method> methods = Arrays.asList( entity.getClass().getMethods()) ;
+			
+			String computedFieldName = "get" + fieldName.substring(0,1).toUpperCase() + fieldName.substring(1);
+
+			
+			Predicate<Method> correspondsName = m -> {
+				if(m.getName().equals(computedFieldName))
+					return true;
+				return false;
+			};
+			
+			Optional<Method> foundMethod = methods.stream().filter(correspondsName).findAny();
+			
+			if(foundMethod.isPresent()) {
+				
+					Collection myCollection = Collection.class.cast(foundMethod.get().invoke(entity));
+
+					//System.out.println(myCollection.getClass());
+					
+					
+					Collection colle = new ArrayList<>();
+					
+					if(size==-1)
+						return myCollection;
+					
+					Iterator iterator = myCollection.iterator();
+					
+					int i = 0;
+
+					int startIndex = page*size;
+					int endIndex = (page+1)*size;
+					
+					while(iterator.hasNext()) {
+						
+						
+						
+						if(i >= endIndex)
+							break;
+						
+						if(i >= startIndex)
+							colle.add(iterator.next());
+						else {
+							iterator.next();
+						}
+						
+						
+						i++;
+					}
+					
+					
+					return colle;
+			   
+			
+			}
+			
+		
+		} catch (SecurityException e) {
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+
+    
+
+	
 
 }
