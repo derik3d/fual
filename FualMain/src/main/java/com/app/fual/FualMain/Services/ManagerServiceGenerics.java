@@ -245,7 +245,7 @@ public class ManagerServiceGenerics<T> implements IManagerServiceGenerics<T>{
 		@SuppressWarnings("unchecked")
 		QueryByExampleExecutor<T> repo = (QueryByExampleExecutor<T>)getRepoDAO(exampleObject);
 		
-		return (List<T>) repo.findAll(Example.of(exampleObject), pageable);
+		return repo.findAll(Example.of(exampleObject), pageable).getContent();
 	}
 
 
