@@ -1,5 +1,6 @@
 package com.app.fual.FualMain.DTO;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -41,6 +42,8 @@ public class UserDataDTO {
 	private String country;
 	
 	private String gender;
+	
+	private Date lastConnected;
 	
 	private Integer age;
 	
@@ -138,6 +141,14 @@ public class UserDataDTO {
 		this.gender = gender;
 	}
 
+	public Date getLastConnected() {
+		return lastConnected;
+	}
+
+	public void setLastConnected(Date lastConnected) {
+		this.lastConnected = lastConnected;
+	}
+
 	public Integer getAge() {
 		return age;
 	}
@@ -216,6 +227,7 @@ public class UserDataDTO {
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + (isTrainer ? 1231 : 1237);
+		result = prime * result + ((lastConnected == null) ? 0 : lastConnected.hashCode());
 		result = prime * result + ((level == null) ? 0 : level.hashCode());
 		result = prime * result + ((postsCreated == null) ? 0 : postsCreated.hashCode());
 		result = prime * result + ((privateChats == null) ? 0 : privateChats.hashCode());
@@ -282,6 +294,11 @@ public class UserDataDTO {
 			return false;
 		if (isTrainer != other.isTrainer)
 			return false;
+		if (lastConnected == null) {
+			if (other.lastConnected != null)
+				return false;
+		} else if (!lastConnected.equals(other.lastConnected))
+			return false;
 		if (level == null) {
 			if (other.level != null)
 				return false;
@@ -324,11 +341,13 @@ public class UserDataDTO {
 	public String toString() {
 		return "UserDataDTO [id=" + id + ", user=" + user + ", isTrainer=" + isTrainer + ", tag=" + tag
 				+ ", profileImageLink=" + profileImageLink + ", userInfo=" + userInfo + ", city=" + city + ", country="
-				+ country + ", gender=" + gender + ", age=" + age + ", level=" + level + ", expLevel=" + expLevel
-				+ ", follows=" + follows + ", followedBy=" + followedBy + ", postsCreated=" + postsCreated
-				+ ", privateChats=" + privateChats + ", blockedUsers=" + blockedUsers + "]";
+				+ country + ", gender=" + gender + ", lastConnected=" + lastConnected + ", age=" + age + ", level="
+				+ level + ", expLevel=" + expLevel + ", follows=" + follows + ", followedBy=" + followedBy
+				+ ", postsCreated=" + postsCreated + ", privateChats=" + privateChats + ", blockedUsers=" + blockedUsers
+				+ "]";
 	}
 
+	
 	
 	
 }
