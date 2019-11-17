@@ -19,6 +19,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.QueryByExampleExecutor;
@@ -244,8 +245,8 @@ public class ManagerServiceGenerics<T> implements IManagerServiceGenerics<T>{
 	public List<T> findAllByExamplePageable(T exampleObject, Pageable pageable) {
 		@SuppressWarnings("unchecked")
 		QueryByExampleExecutor<T> repo = (QueryByExampleExecutor<T>)getRepoDAO(exampleObject);
-		
-		return (List<T>) repo.findAll(Example.of(exampleObject), pageable);
+		Page<T> result = repo.findAll(Example.of(exampleObject), pageable);
+		return result.getContent();
 	}
 
 

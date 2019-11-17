@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.app.fual.FualMain.DTO.PublicChatDTO;
 
 @Repository
-public interface IPublicChatDAO extends CrudRepository<PublicChatDTO, Long>,QueryByExampleExecutor<PublicChatDTO>, PagingAndSortingRepository<PublicChatDTO,Long>{
+public interface IPublicChatDAO extends IGeneralDAO<PublicChatDTO, Long>{
 	
 }

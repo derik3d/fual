@@ -11,8 +11,8 @@ import com.app.fual.FualMain.DTO.PostDTO;
 import com.app.fual.FualMain.DTO.UserDataDTO;
 
 @Repository
-public interface IUserDataDAO extends CrudRepository<UserDataDTO, Long>, QueryByExampleExecutor<UserDataDTO>, PagingAndSortingRepository<UserDataDTO,Long>{
-
+public interface IUserDataDAO extends IGeneralDAO<UserDataDTO, Long>{
+	
 	Optional<UserDataDTO> findByUser_Id(Long id);
 	
 }

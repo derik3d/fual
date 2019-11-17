@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.app.fual.FualMain.DTO.CommentDTO;
 
 @Repository
-public interface ICommentDAO extends CrudRepository<CommentDTO, Long>, QueryByExampleExecutor<CommentDTO>,
-PagingAndSortingRepository<CommentDTO,Long>{
+public interface ICommentDAO extends IGeneralDAO<CommentDTO, Long>{
 	
 }
