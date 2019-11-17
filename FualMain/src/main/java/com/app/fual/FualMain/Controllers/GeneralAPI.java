@@ -7,6 +7,9 @@ import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -149,16 +152,28 @@ public abstract class GeneralAPI<T> {
     
 
 	
-    @PostMapping("findAllByExamplePageable/{numResults}/{page}")
+    @PostMapping("findAllByExamplePageable/{size}/{page}/{natural}/{sortBy}")
     public ResponseEntity<List<T>> getAllByEntityPageable(
-  	      @PathVariable(name="numResults") int numResults,
+  	      @PathVariable(name="size") int size,
   	      @PathVariable(name="page") int page,
+  	      @PathVariable(name="natural", required = false) boolean natural,
+  	      @PathVariable(name="sortBy", required = false) String sortBy,
   	      @RequestBody T entity
   	      ) {
       
+    	Pageable pageable = null;
+    	
+    	if(sortBy instanceof Object && sortBy.length()>0) {
+    		if(natural)
+    			pageable = PageRequest.of(page,size,Sort.by(sortBy));
+    		else
+    			pageable = PageRequest.of(page,size,Sort.by(sortBy).descending());
+    	}else {
+    		pageable = PageRequest.of(page,size);
+    	}
     	
     	
-    	List<T> result= iManagerServiceGenerics.findAllByExample(entity);
+    	List<T> result= iManagerServiceGenerics.findAllByExamplePageable(entity, pageable);
     	
     	if (result == null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     	else return new ResponseEntity<>(result,HttpStatus.OK);

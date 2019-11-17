@@ -2,6 +2,8 @@ package com.app.fual.FualMain.Interfaces;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
+
 import com.app.fual.FualMain.UtilEntities.MiniResponse;
 
 public interface IManagerServiceGenerics<T>{
@@ -21,5 +23,6 @@ public interface IManagerServiceGenerics<T>{
 	//new methods 2
 	
 	MiniResponse sizeOfCollection(T entitySample, Long entityId, String fieldName);
+	List<T> findAllByExamplePageable(T exampleObject, Pageable pageable);
 
 }
