@@ -6,6 +6,9 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.app.fual.FualMain.DAO.IChallengeDAO;
@@ -236,6 +239,20 @@ public class ManagerService implements IManagerService{
 		
 		return true;
 	}
+
+
+	@Override
+	public List<PostDTO> getPostsFeedForUser(Long id, int howMany, int page) {
+		UserDataDTO userData = getUserDataWithUserId(id);
+		Set<UserDTO> follows = userData.getFollows();
+		
+		Pageable pageable = PageRequest.of(page, howMany, Sort.by("date").descending());
+	
+		return (List<PostDTO>) iPostDAO.findAllByCreatorIn(follows, pageable);
+		
+	}
+	
+	
 	
 
 }

@@ -237,6 +237,22 @@ public class CustomController {
     	
     }
     
+
+    @GetMapping(
+    		value="/postsFeedForUser/{id}/{howMany}/{page}"
+    		)
     
+    public  ResponseEntity<List<PostDTO>>  getPostsFeedForUser(
+    		@PathVariable(name="id", required=true) Long id,
+    		@PathVariable(name="howMany", required=true) int howMany,
+    		@PathVariable(name="page", required=true) int page
+    		){
+    	
+    	List<PostDTO> res = iManagerService.getPostsFeedForUser(id, howMany, page);
+    	
+    	if (res == null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	else return new ResponseEntity<>(res,HttpStatus.OK);
+    	
+    }
 
 }

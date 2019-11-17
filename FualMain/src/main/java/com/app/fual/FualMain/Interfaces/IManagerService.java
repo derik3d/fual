@@ -36,4 +36,7 @@ public interface IManagerService {
 	public boolean unFollowUser(Long follower, Long followed);
 	
 	
+	public List<PostDTO> getPostsFeedForUser(Long id, int howMany, int page);
+	
+	
 }
