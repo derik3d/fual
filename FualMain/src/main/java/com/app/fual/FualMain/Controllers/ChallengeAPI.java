@@ -7,6 +7,6 @@ import com.app.fual.FualMain.DTO.ChallengeDTO;
 
 @RestController
 @RequestMapping("challenge")
-public class ChallengeApi extends GeneralAPI<ChallengeDTO>{
+public class ChallengeAPI extends GeneralAPI<ChallengeDTO>{
 
 }

@@ -1,10 +1,16 @@
 package com.app.fual.FualMain.Services;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import javax.annotation.PostConstruct;
 
@@ -32,6 +38,7 @@ import com.app.fual.FualMain.DTO.UserDTO;
 import com.app.fual.FualMain.DTO.UserDataDTO;
 import com.app.fual.FualMain.Interfaces.IManagerService;
 import com.app.fual.FualMain.Interfaces.IManagerServiceGenerics;
+import com.app.fual.FualMain.UtilEntities.MiniResponse;
 
 @Service
 public class ManagerServiceGenerics<T> implements IManagerServiceGenerics<T>{
@@ -182,7 +189,57 @@ public class ManagerServiceGenerics<T> implements IManagerServiceGenerics<T>{
 		return repo.save(existing);
 	
 	}
+
+
+	@Override
+	public MiniResponse sizeOfCollection(T entitySample, Long entityId, String fieldName) {
+		T entity = findEntity(entitySample, entityId);
+		
+		MiniResponse mr = new MiniResponse();
+		mr.setRequest(entitySample.getClass()+" "+entityId+" "+fieldName);
+		
+		try {
+			
+			List<Method> methods = Arrays.asList( entity.getClass().getMethods()) ;
+			
+			String computedFieldName = "get" + fieldName.substring(0,1).toUpperCase() + fieldName.substring(1);
+
+			
+			Predicate<Method> correspondsName = m -> {
+				if(m.getName().equals(computedFieldName))
+					return true;
+				return false;
+			};
+			
+			Optional<Method> foundMethod = methods.stream().filter(correspondsName).findAny();
+			
+			if(foundMethod.isPresent()) {
+				
+					Collection myCollection = Collection.class.cast(foundMethod.get().invoke(entity));
+					   int size = myCollection.size();
+					   mr.setResponse(""+size);
+			   
+			
+			}
+			
+		
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return mr;
+	}
     
+	
 
 
 }

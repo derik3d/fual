@@ -382,6 +382,16 @@ public class FualMainApplicationTests {
 		iManagerServiceGenericsPublicChatDTO.updateEntity(postChatRetrieved.getId(), postChatRetrieved);
 		
 		
+		String numFollowers = iManagerServiceGenericsUserDataDTO.sizeOfCollection(userData1, userData1.getId(), "followedBy").getResponse();
+		
+		if(numFollowers instanceof Object)
+			System.out.print("numberOfFollowers " + numFollowers );
+		else
+			System.out.print("NOPE");
+
+
+		
+		
 		System.out.print("");
 		//
 	}

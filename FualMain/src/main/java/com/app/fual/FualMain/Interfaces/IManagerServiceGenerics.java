@@ -2,6 +2,8 @@ package com.app.fual.FualMain.Interfaces;
 
 import java.util.List;
 
+import com.app.fual.FualMain.UtilEntities.MiniResponse;
+
 public interface IManagerServiceGenerics<T>{
 
 	T createEntity(T entity);
@@ -15,5 +17,9 @@ public interface IManagerServiceGenerics<T>{
 	T findOneByExample(T exampleObject);
 	
 	T patchEntity(Long id, T patchEntity);
+	
+	//new methods 2
+	
+	MiniResponse sizeOfCollection(T entitySample, Long entityId, String fieldName);
 
 }

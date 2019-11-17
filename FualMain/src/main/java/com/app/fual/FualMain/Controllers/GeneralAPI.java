@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.app.fual.FualMain.DTO.PostDTO;
 import com.app.fual.FualMain.Interfaces.IManagerService;
 import com.app.fual.FualMain.Interfaces.IManagerServiceGenerics;
+import com.app.fual.FualMain.UtilEntities.MiniResponse;
 
 public abstract class GeneralAPI<T> {
 	
@@ -127,4 +128,41 @@ public abstract class GeneralAPI<T> {
     	if (patchEntity==null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     	else return ResponseEntity.ok(HttpStatus.OK);
     }    
+    
+    
+
+	
+	
+    @GetMapping("{id}/collectionSize/{collectionName}")
+    public ResponseEntity<MiniResponse> getCollectionSize(
+    	      @PathVariable(name="id") Long id,
+    	      @PathVariable(name="collectionName") String collectionName
+      ) throws InstantiationException, IllegalAccessException {
+    	    	
+		T entitySample = type.newInstance();
+    	
+    	MiniResponse mr = iManagerServiceGenerics.sizeOfCollection( entitySample , id, collectionName);
+    	
+    	if (mr == null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	else return new ResponseEntity<>(mr,HttpStatus.OK);
+	}
+    
+
+	
+    @PostMapping("findAllByExamplePageable/{numResults}/{page}")
+    public ResponseEntity<List<T>> getAllByEntityPageable(
+  	      @PathVariable(name="numResults") int numResults,
+  	      @PathVariable(name="page") int page,
+  	      @RequestBody T entity
+  	      ) {
+      
+    	
+    	
+    	List<T> result= iManagerServiceGenerics.findAllByExample(entity);
+    	
+    	if (result == null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	else return new ResponseEntity<>(result,HttpStatus.OK);
+	}
+	
+    
 }
