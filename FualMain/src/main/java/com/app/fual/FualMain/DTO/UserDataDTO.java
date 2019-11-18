@@ -43,6 +43,8 @@ public class UserDataDTO {
 	
 	private String gender;
 	
+	private String userName;
+	
 	private Date lastConnected;
 	
 	private Integer age;
@@ -141,6 +143,14 @@ public class UserDataDTO {
 		this.gender = gender;
 	}
 
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
 	public Date getLastConnected() {
 		return lastConnected;
 	}
@@ -235,6 +245,7 @@ public class UserDataDTO {
 		result = prime * result + ((tag == null) ? 0 : tag.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		result = prime * result + ((userInfo == null) ? 0 : userInfo.hashCode());
+		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
 		return result;
 	}
 
@@ -334,6 +345,11 @@ public class UserDataDTO {
 				return false;
 		} else if (!userInfo.equals(other.userInfo))
 			return false;
+		if (userName == null) {
+			if (other.userName != null)
+				return false;
+		} else if (!userName.equals(other.userName))
+			return false;
 		return true;
 	}
 
@@ -341,12 +357,13 @@ public class UserDataDTO {
 	public String toString() {
 		return "UserDataDTO [id=" + id + ", user=" + user + ", isTrainer=" + isTrainer + ", tag=" + tag
 				+ ", profileImageLink=" + profileImageLink + ", userInfo=" + userInfo + ", city=" + city + ", country="
-				+ country + ", gender=" + gender + ", lastConnected=" + lastConnected + ", age=" + age + ", level="
-				+ level + ", expLevel=" + expLevel + ", follows=" + follows + ", followedBy=" + followedBy
-				+ ", postsCreated=" + postsCreated + ", privateChats=" + privateChats + ", blockedUsers=" + blockedUsers
-				+ "]";
+				+ country + ", gender=" + gender + ", userName=" + userName + ", lastConnected=" + lastConnected
+				+ ", age=" + age + ", level=" + level + ", expLevel=" + expLevel + ", follows=" + follows
+				+ ", followedBy=" + followedBy + ", postsCreated=" + postsCreated + ", privateChats=" + privateChats
+				+ ", blockedUsers=" + blockedUsers + "]";
 	}
 
+	
 	
 	
 	
