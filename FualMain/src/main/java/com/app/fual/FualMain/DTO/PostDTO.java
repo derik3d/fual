@@ -1,9 +1,9 @@
 package com.app.fual.FualMain.DTO;
 
-import java.util.ArrayList;
+import java.util.Set;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
+import java.util.Set;
 import java.util.Set;
 
 import javax.persistence.CollectionTable;
@@ -44,7 +44,7 @@ public class PostDTO {
     private ChallengeDTO challenge;
     
     @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> imageLink = new ArrayList<>();
+    private Set<String> imageLink = new HashSet<>();
 	
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="POST_USER_JTABLE")
@@ -99,11 +99,11 @@ public class PostDTO {
 		this.challenge = challenge;
 	}
 
-	public List<String> getImageLink() {
+	public Set<String> getImageLink() {
 		return imageLink;
 	}
 
-	public void setImageLink(List<String> imageLink) {
+	public void setImageLink(Set<String> imageLink) {
 		this.imageLink = imageLink;
 	}
 
