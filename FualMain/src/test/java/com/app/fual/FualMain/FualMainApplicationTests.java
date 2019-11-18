@@ -282,7 +282,7 @@ public class FualMainApplicationTests {
 		post.setChallenge(postChallenge);
 		post.setChat(postChat);
 		
-		List<String> images = post.getImageLink();
+		Set<String> images = post.getImageLink();
 		images.add("http://mi.fotico.com/foto2");
 		images.add("http://mi.fotico.com/foto3");
 		images.add("http://mi.fotico.com/foto4");
