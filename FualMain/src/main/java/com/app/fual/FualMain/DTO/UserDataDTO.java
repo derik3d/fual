@@ -43,7 +43,7 @@ public class UserDataDTO {
 	
 	private String gender;
 	
-	private String userName;
+	private String realName;
 	
 	private Date lastConnected;
 	
@@ -143,12 +143,12 @@ public class UserDataDTO {
 		this.gender = gender;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getRealName() {
+		return realName;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setRealName(String realName) {
+		this.realName = realName;
 	}
 
 	public Date getLastConnected() {
@@ -242,10 +242,10 @@ public class UserDataDTO {
 		result = prime * result + ((postsCreated == null) ? 0 : postsCreated.hashCode());
 		result = prime * result + ((privateChats == null) ? 0 : privateChats.hashCode());
 		result = prime * result + ((profileImageLink == null) ? 0 : profileImageLink.hashCode());
+		result = prime * result + ((realName == null) ? 0 : realName.hashCode());
 		result = prime * result + ((tag == null) ? 0 : tag.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		result = prime * result + ((userInfo == null) ? 0 : userInfo.hashCode());
-		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
 		return result;
 	}
 
@@ -330,6 +330,11 @@ public class UserDataDTO {
 				return false;
 		} else if (!profileImageLink.equals(other.profileImageLink))
 			return false;
+		if (realName == null) {
+			if (other.realName != null)
+				return false;
+		} else if (!realName.equals(other.realName))
+			return false;
 		if (tag == null) {
 			if (other.tag != null)
 				return false;
@@ -345,11 +350,6 @@ public class UserDataDTO {
 				return false;
 		} else if (!userInfo.equals(other.userInfo))
 			return false;
-		if (userName == null) {
-			if (other.userName != null)
-				return false;
-		} else if (!userName.equals(other.userName))
-			return false;
 		return true;
 	}
 
@@ -357,12 +357,13 @@ public class UserDataDTO {
 	public String toString() {
 		return "UserDataDTO [id=" + id + ", user=" + user + ", isTrainer=" + isTrainer + ", tag=" + tag
 				+ ", profileImageLink=" + profileImageLink + ", userInfo=" + userInfo + ", city=" + city + ", country="
-				+ country + ", gender=" + gender + ", userName=" + userName + ", lastConnected=" + lastConnected
+				+ country + ", gender=" + gender + ", realName=" + realName + ", lastConnected=" + lastConnected
 				+ ", age=" + age + ", level=" + level + ", expLevel=" + expLevel + ", follows=" + follows
 				+ ", followedBy=" + followedBy + ", postsCreated=" + postsCreated + ", privateChats=" + privateChats
 				+ ", blockedUsers=" + blockedUsers + "]";
 	}
 
+	
 	
 	
 	
