@@ -1,5 +1,6 @@
 package com.app.fual.FualMain.DTO;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,6 +20,8 @@ public class ChatDTO {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	private Date lastModified;
+	
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<UserDTO> participants = new HashSet<>();
     
@@ -31,6 +34,14 @@ public class ChatDTO {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Date getLastModified() {
+		return lastModified;
+	}
+
+	public void setLastModified(Date lastModified) {
+		this.lastModified = lastModified;
 	}
 
 	public Set<UserDTO> getParticipants() {
@@ -55,6 +66,7 @@ public class ChatDTO {
 		int result = 1;
 		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((lastModified == null) ? 0 : lastModified.hashCode());
 		result = prime * result + ((participants == null) ? 0 : participants.hashCode());
 		return result;
 	}
@@ -78,6 +90,11 @@ public class ChatDTO {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (lastModified == null) {
+			if (other.lastModified != null)
+				return false;
+		} else if (!lastModified.equals(other.lastModified))
+			return false;
 		if (participants == null) {
 			if (other.participants != null)
 				return false;
@@ -88,12 +105,10 @@ public class ChatDTO {
 
 	@Override
 	public String toString() {
-		return "ChatDTO [id=" + id + ", participants=" + participants + ", comments=" + comments + "]";
+		return "ChatDTO [id=" + id + ", lastModified=" + lastModified + ", participants=" + participants + ", comments="
+				+ comments + "]";
 	}
-	
-	////-------------------------------------------------------------
 
-	
-	
+
 
 }

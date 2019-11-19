@@ -1,5 +1,6 @@
 package com.app.fual.FualMain.Services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -116,6 +117,8 @@ public class ManagerService implements IManagerService{
 		participants.add(comment.getSender());
 		chat.setParticipants(participants);
 		
+		chat.setLastModified(new Date());
+		
 		iPublicChatDAO.save(chat);
 		
 		return iPostDAO.findById(postId).get();
@@ -136,6 +139,8 @@ public class ManagerService implements IManagerService{
 		Set<UserDTO> participants = chat.get().getParticipants();
 		participants.add(comment.getSender());
 		chat.get().setParticipants(participants);
+		
+		chat.get().setLastModified(new Date());
 		
 		PrivateChatDTO result = iPrivateChatDAO.save(chat.get());
 		
