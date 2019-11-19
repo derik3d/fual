@@ -64,7 +64,8 @@ public class UserDataDTO {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "creator")
 	private Set<PostDTO> postsCreated = new HashSet<>();
     
-	@OneToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name="PRIVATE_CHATS_USERDATA_JTABLE")
 	private Set<PrivateChatDTO> privateChats = new HashSet<>();
     
 	@ManyToMany(fetch = FetchType.EAGER)
