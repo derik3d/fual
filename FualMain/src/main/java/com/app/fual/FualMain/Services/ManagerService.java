@@ -175,7 +175,15 @@ public class ManagerService implements IManagerService{
 				participants.add(user.get());
 		}
 		privateChat.setParticipants(participants);
-		return iPrivateChatDAO.save(privateChat);
+		PrivateChatDTO savedPrivateChat = iPrivateChatDAO.save(privateChat);
+		for(UserDTO udto : savedPrivateChat.getParticipants()) {
+			UserDataDTO userDataWithUserId = getUserDataWithUserId(udto.getId());
+			if(userDataWithUserId instanceof Object) {
+				userDataWithUserId.getPrivateChats().add(savedPrivateChat);
+				iUserDataDAO.save(userDataWithUserId);
+			}
+		}
+		return savedPrivateChat;
 	}
 
 
