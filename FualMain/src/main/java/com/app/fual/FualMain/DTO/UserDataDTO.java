@@ -21,7 +21,6 @@ import javax.persistence.OneToOne;
 public class UserDataDTO {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
 	@JoinColumn(nullable=false)
@@ -85,6 +84,7 @@ public class UserDataDTO {
 	}
 
 	public void setUser(UserDTO user) {
+		this.id = user.getId();
 		this.user = user;
 	}
 
