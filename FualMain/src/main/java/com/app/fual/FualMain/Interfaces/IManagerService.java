@@ -38,5 +38,7 @@ public interface IManagerService {
 	
 	public List<PostDTO> getPostsFeedForUser(Long id, int howMany, int page);
 	
+	public CommentDTO commentPostGetComment(Long postId, CommentDTO comment);
+	
 	
 }

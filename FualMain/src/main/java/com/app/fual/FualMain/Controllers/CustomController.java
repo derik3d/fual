@@ -160,6 +160,18 @@ public class CustomController {
     	
     }
     
+    @PostMapping("commentPostGetComment/{id}")
+    public ResponseEntity<CommentDTO> commentPostGetComment(
+    		@PathVariable(name="id") Long postId,
+    		@RequestBody CommentDTO comment) {
+      
+		CommentDTO post = iManagerService.commentPostGetComment(postId, comment);
+    	
+    	if (post == null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	else return new ResponseEntity<>(post,HttpStatus.OK);
+    	
+    }
+    
     @PostMapping("commentPrivateChat/{id}")
     public ResponseEntity<PrivateChatDTO> commentPrivateChat(
     		@PathVariable(name="id") Long privateChatId,

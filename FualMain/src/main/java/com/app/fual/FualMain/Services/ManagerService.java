@@ -123,6 +123,29 @@ public class ManagerService implements IManagerService{
 		
 		return iPostDAO.findById(postId).get();
 	}
+	
+	
+	@Override
+	public CommentDTO commentPostGetComment(Long postId, CommentDTO comment) {
+		
+		PublicChatDTO chat = iPostDAO.findById(postId).get().getChat();
+		
+		comment = iCommentDAO.save(comment);
+		
+		Set<CommentDTO> comments = chat.getComments();
+		comments.add(comment);
+		chat.setComments(comments);
+		
+		Set<UserDTO> participants = chat.getParticipants();
+		participants.add(comment.getSender());
+		chat.setParticipants(participants);
+		
+		chat.setLastModified(new Date());
+		
+		iPublicChatDAO.save(chat);
+		
+		return comment;
+	}
 
 
 	@Override
