@@ -212,6 +212,34 @@ public class CustomController {
     	
     }
     
+
+    
+    @PostMapping("unlikeComment/{commentId}/{userId}")
+    public ResponseEntity<CommentDTO> unlikeComment(
+    		@PathVariable(name="commentId") Long commentId,
+    		@PathVariable(name="userId") Long userId) {
+      
+		CommentDTO comment = iManagerService.unlikeComment(commentId, userId);
+    	
+    	if (comment == null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	else return new ResponseEntity<>(comment,HttpStatus.OK);
+    	
+    }
+    
+
+    
+    @PostMapping("unlikePost/{postId}/{userId}")
+    public ResponseEntity<PostDTO> unlikePost(
+    		@PathVariable(name="postId") Long postId,
+    		@PathVariable(name="userId") Long userId) {
+      
+		PostDTO post = iManagerService.unlikePost(postId, userId);
+    	
+    	if (post == null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	else return new ResponseEntity<>(post,HttpStatus.OK);
+    	
+    }
+    
     @PostMapping("createPrivateChat")
     public ResponseEntity<PrivateChatDTO> createPrivateChat(
     		@RequestBody List<Long> userIds) {
