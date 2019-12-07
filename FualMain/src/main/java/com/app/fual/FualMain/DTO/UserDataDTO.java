@@ -50,6 +50,8 @@ public class UserDataDTO {
 	
 	private Integer level;
 	
+	private String challengeLevel;
+	
 	private Integer expLevel;
     
 	@ManyToMany(fetch = FetchType.EAGER)
@@ -176,6 +178,14 @@ public class UserDataDTO {
 		this.level = level;
 	}
 
+	public String getChallengeLevel() {
+		return challengeLevel;
+	}
+
+	public void setChallengeLevel(String challengeLevel) {
+		this.challengeLevel = challengeLevel;
+	}
+	
 	public Integer getExpLevel() {
 		return expLevel;
 	}
@@ -240,6 +250,7 @@ public class UserDataDTO {
 		result = prime * result + (isTrainer ? 1231 : 1237);
 		result = prime * result + ((lastConnected == null) ? 0 : lastConnected.hashCode());
 		result = prime * result + ((level == null) ? 0 : level.hashCode());
+		result = prime * result + ((challengeLevel == null) ? 0 : challengeLevel.hashCode());
 		result = prime * result + ((postsCreated == null) ? 0 : postsCreated.hashCode());
 		result = prime * result + ((privateChats == null) ? 0 : privateChats.hashCode());
 		result = prime * result + ((profileImageLink == null) ? 0 : profileImageLink.hashCode());
@@ -316,6 +327,11 @@ public class UserDataDTO {
 				return false;
 		} else if (!level.equals(other.level))
 			return false;
+		if (challengeLevel == null) {
+			if (other.challengeLevel != null)
+				return false;
+		} else if (!challengeLevel.equals(other.challengeLevel))
+			return false;
 		if (postsCreated == null) {
 			if (other.postsCreated != null)
 				return false;
@@ -359,7 +375,7 @@ public class UserDataDTO {
 		return "UserDataDTO [id=" + id + ", user=" + user + ", isTrainer=" + isTrainer + ", tag=" + tag
 				+ ", profileImageLink=" + profileImageLink + ", userInfo=" + userInfo + ", city=" + city + ", country="
 				+ country + ", gender=" + gender + ", realName=" + realName + ", lastConnected=" + lastConnected
-				+ ", age=" + age + ", level=" + level + ", expLevel=" + expLevel + ", follows=" + follows
+				+ ", age=" + age + ", level=" + level + ", challengeLevel=" + challengeLevel + ", expLevel=" + expLevel + ", follows=" + follows
 				+ ", followedBy=" + followedBy + ", postsCreated=" + postsCreated + ", privateChats=" + privateChats
 				+ ", blockedUsers=" + blockedUsers + "]";
 	}
