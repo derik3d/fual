@@ -185,17 +185,19 @@ public abstract class GeneralAPI<T> {
     
 
 	
-    @GetMapping("{id}/collectionData/{collectionName}/{size}/{page}")
+    @GetMapping("{id}/collectionData/{collectionName}/{size}/{page}/{sort}/{reverse}")
     public ResponseEntity<Collection> getCollectionData(
     	      @PathVariable(name="id") Long id,
       	      @PathVariable(name="size") int size,
       	      @PathVariable(name="page") int page,
     	      @PathVariable(name="collectionName") String collectionName
+      	      @PathVariable(name="sort") boolean sort,
+      	      @PathVariable(name="reverse") boolean reverse,
       ) throws InstantiationException, IllegalAccessException {
     	    	
 		T entitySample = type.newInstance();
     	
-    	Collection collection = iManagerServiceGenerics.getCollection( entitySample , id, collectionName, size, page);
+    	Collection collection = iManagerServiceGenerics.getCollection( entitySample , id, collectionName, size, page, sort, reverse);
     	
     	System.out.println(collection.getClass());
     	
