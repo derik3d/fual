@@ -43,7 +43,7 @@ public interface IManagerService {
 	public CommentDTO unlikeComment(Long commentId, Long userId);
 	public PostDTO unlikePost(Long postId, Long userId);
 	
-	public List<Integer> getRecommendedUsers(Integer id);
+	public List<Long> getRecommendedUsers(Long id);
 
 
 }
