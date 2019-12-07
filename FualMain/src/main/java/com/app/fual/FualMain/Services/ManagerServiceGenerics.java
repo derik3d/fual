@@ -6,6 +6,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -254,7 +255,7 @@ public class ManagerServiceGenerics<T> implements IManagerServiceGenerics<T>{
 
 
 	@Override
-	public Collection getCollection(T entitySample, Long entityId, String fieldName, int size, int page) {
+	public Collection getCollection(T entitySample, Long entityId, String fieldName, int size, int page, boolean sort, boolean reverse) {
 
 		T entity = findEntity(entitySample, entityId);
 		
@@ -288,6 +289,20 @@ public class ManagerServiceGenerics<T> implements IManagerServiceGenerics<T>{
 					if(size==-1)
 						return myCollection;
 					
+					if(sort){
+					
+						if(reverse){
+							
+	   						Collections.sort(myCollection, Collections.reverseOrder());						
+						}else{
+						
+							   Collections.sort(myCollection);
+						
+						}
+					
+					
+					}
+				
 					Iterator iterator = myCollection.iterator();
 					
 					int i = 0;
