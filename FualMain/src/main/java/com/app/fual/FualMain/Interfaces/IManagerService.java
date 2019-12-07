@@ -40,5 +40,7 @@ public interface IManagerService {
 	
 	public CommentDTO commentPostGetComment(Long postId, CommentDTO comment);
 	
-	
+	public CommentDTO unlikeComment(Long commentId, Long userId);
+	public PostDTO unlikePost(Long postId, Long userId);
+
 }
