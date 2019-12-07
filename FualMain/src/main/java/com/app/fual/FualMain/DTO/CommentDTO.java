@@ -19,7 +19,12 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class CommentDTO {
+public class CommentDTO implements Comparable<CommentDTO>{
+	
+	@Override
+	int compareTo(CommentDTO other){
+		return this.date.compareTo(other.date);
+	}
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
