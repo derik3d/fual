@@ -22,7 +22,7 @@ import javax.persistence.TemporalType;
 public class CommentDTO implements Comparable<CommentDTO>{
 	
 	@Override
-	int compareTo(CommentDTO other){
+	public int compareTo(CommentDTO other){
 		return this.date.compareTo(other.date);
 	}
 
