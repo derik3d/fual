@@ -303,9 +303,9 @@ public class CustomController {
     		value="/getRecommendedUsers/{id}"
     		)
     
-    public  ResponseEntity<List<Integer>>  getRecommendedUsers(@PathVariable(name="id", required=true) Long id){
+    public  ResponseEntity<List<Long>>  getRecommendedUsers(@PathVariable(name="id", required=true) Long id){
     	
-    	List<Integer> res = iManagerService.getRecommendedUsers(id);
+    	List<Long> res = iManagerService.getRecommendedUsers(id);
     	
     	if (res == null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     	else return new ResponseEntity<>(res,HttpStatus.OK);
