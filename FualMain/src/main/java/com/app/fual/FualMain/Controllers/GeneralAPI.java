@@ -190,7 +190,7 @@ public abstract class GeneralAPI<T> {
     	      @PathVariable(name="id") Long id,
       	      @PathVariable(name="size") int size,
       	      @PathVariable(name="page") int page,
-    	      @PathVariable(name="collectionName") String collectionName
+    	      @PathVariable(name="collectionName") String collectionName,
       	      @PathVariable(name="sort", required = false) boolean sort,
       	      @PathVariable(name="reverse", required = false) boolean reverse
       ) throws InstantiationException, IllegalAccessException {
