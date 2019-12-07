@@ -279,8 +279,12 @@ public class ManagerServiceGenerics<T> implements IManagerServiceGenerics<T>{
 			
 			if(foundMethod.isPresent()) {
 				
-					Collection myCollection = Collection.class.cast(foundMethod.get().invoke(entity));
+					
+					Collection rawCollection = Collection.class.cast(foundMethod.get().invoke(entity));
 
+					List myCollection = new ArrayList<>(rawCollection);
+					
+					
 					//System.out.println(myCollection.getClass());
 					
 					
@@ -291,13 +295,17 @@ public class ManagerServiceGenerics<T> implements IManagerServiceGenerics<T>{
 					
 					if(sort){
 					
-						if(reverse){
+						try {
+							if(reverse){
+								
+		   						Collections.sort(myCollection, Collections.reverseOrder());						
+							}else{
 							
-	   						Collections.sort(myCollection, Collections.reverseOrder());						
-						}else{
-						
 							   Collections.sort(myCollection);
-						
+							
+							}
+						}catch(Exception ex) {
+							System.out.println("EX.incomparable");
 						}
 					
 					

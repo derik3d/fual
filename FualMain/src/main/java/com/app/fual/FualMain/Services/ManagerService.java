@@ -314,7 +314,7 @@ public class ManagerService implements IManagerService{
 	@Override
 	public List<Long> getRecommendedUsers(Long userId){
 	
-		return ((List<UserDataDTO>) iUserDataDAO.findTop10OrderByLevel()).stream().map(UserDataDTO::getId).collect(Collectors.toList());
+		return ((List<UserDataDTO>) iUserDataDAO.findTop10ByOrderByLevel()).stream().map(UserDataDTO::getId).collect(Collectors.toList());
 	
 	}
 	

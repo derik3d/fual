@@ -15,6 +15,6 @@ import com.app.fual.FualMain.DTO.UserDataDTO;
 public interface IUserDataDAO extends CrudRepository<UserDataDTO, Long>, QueryByExampleExecutor<UserDataDTO>, PagingAndSortingRepository<UserDataDTO,Long>{
 
 	Optional<UserDataDTO> findByUser_Id(Long id);
-	List<UserDataDTO> findTop10OrderByLevel();
+	List<UserDataDTO> findTop10ByOrderByLevel();
 	
 }
