@@ -194,6 +194,28 @@ public class ManagerService implements IManagerService{
 
 
 	@Override
+	public CommentDTO unlikeComment(Long commentId, Long userId) {
+		UserDTO liker = iUserDAO.findById(userId).get();
+		CommentDTO comment = iCommentDAO.findById(commentId).get();
+		Set<UserDTO> likers = comment.getLikedBy();
+		likers.remove(liker);
+		comment.setLikedBy(likers);
+		return iCommentDAO.save(comment);
+	}
+
+
+	@Override
+	public PostDTO unlikePost(Long postId, Long userId) {
+		UserDTO liker = iUserDAO.findById(userId).get();
+		PostDTO post = iPostDAO.findById(postId).get();
+		Set<UserDTO> likers = post.getLikedBy();
+		likers.remove(liker);
+		post.setLikedBy(likers);
+		return iPostDAO.save(post);
+	}
+
+
+	@Override
 	public PrivateChatDTO createPrivateChat(List<Long> userIds) {
 		PrivateChatDTO privateChat = new PrivateChatDTO();
 		Set<UserDTO> participants = privateChat.getParticipants();
