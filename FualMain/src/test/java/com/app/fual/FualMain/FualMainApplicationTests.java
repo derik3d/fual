@@ -391,7 +391,7 @@ public class FualMainApplicationTests {
 			System.out.print("NOPE");
 		
 
-		Collection coll = iManagerServiceGenericsUserDataDTO.getCollection(userData1, userData1.getId(), "followedBy", 1 , 0);
+		Collection coll = iManagerServiceGenericsUserDataDTO.getCollection(userData1, userData1.getId(), "followedBy", 1 , 0,true,true);
 		
 		if(coll instanceof Object)
 			System.out.print("1 0 " + coll );
@@ -399,7 +399,7 @@ public class FualMainApplicationTests {
 			System.out.print("NOPE");
 
 
-		 coll = iManagerServiceGenericsUserDataDTO.getCollection(userData1, userData1.getId(), "followedBy", 1 , 1);
+		 coll = iManagerServiceGenericsUserDataDTO.getCollection(userData1, userData1.getId(), "followedBy", 1 , 1,true,true);
 		
 		if(coll instanceof Object)
 			System.out.print("1 1 " + coll );
@@ -409,7 +409,7 @@ public class FualMainApplicationTests {
 
 
 		
-		 coll = iManagerServiceGenericsUserDataDTO.getCollection(userData1, userData1.getId(), "followedBy", 2 , 0);
+		 coll = iManagerServiceGenericsUserDataDTO.getCollection(userData1, userData1.getId(), "followedBy", 2 , 0,true,true);
 		
 		if(coll instanceof Object)
 			System.out.print("2 0 " + coll );
@@ -417,7 +417,7 @@ public class FualMainApplicationTests {
 			System.out.print("NOPE");
 
 		
-		 coll = iManagerServiceGenericsUserDataDTO.getCollection(userData1, userData1.getId(), "followedBy", -1 , 0);
+		 coll = iManagerServiceGenericsUserDataDTO.getCollection(userData1, userData1.getId(), "followedBy", -1 , 0,true,true);
 		
 		if(coll instanceof Object)
 			System.out.print("-1 0 " + coll );
