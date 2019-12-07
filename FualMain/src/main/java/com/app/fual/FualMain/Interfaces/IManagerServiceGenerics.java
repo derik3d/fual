@@ -26,6 +26,6 @@ public interface IManagerServiceGenerics<T>{
 	
 	MiniResponse sizeOfCollection(T entitySample, Long entityId, String fieldName);
 	List<T> findAllByExamplePageable(T exampleObject, Pageable pageable);
-	Collection getCollection(T entitySample, Long entityId, String fieldName, int size, int page);
+	Collection getCollection(T entitySample, Long entityId, String fieldName, int size, int page, boolean sort, boolean reverse);
 
 }
