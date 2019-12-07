@@ -192,7 +192,7 @@ public abstract class GeneralAPI<T> {
       	      @PathVariable(name="page") int page,
     	      @PathVariable(name="collectionName") String collectionName
       	      @PathVariable(name="sort") boolean sort,
-      	      @PathVariable(name="reverse") boolean reverse,
+      	      @PathVariable(name="reverse") boolean reverse
       ) throws InstantiationException, IllegalAccessException {
     	    	
 		T entitySample = type.newInstance();
