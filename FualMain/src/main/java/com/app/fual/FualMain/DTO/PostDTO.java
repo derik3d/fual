@@ -24,7 +24,12 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class PostDTO {
+public class PostDTO implements Comparable<PostDTO>{
+	
+	@Override
+	int compareTo(PostDTO other){
+		return this.date.compareTo(other.date);
+	}
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
