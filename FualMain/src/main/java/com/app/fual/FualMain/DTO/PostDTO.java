@@ -27,7 +27,7 @@ import javax.persistence.TemporalType;
 public class PostDTO implements Comparable<PostDTO>{
 	
 	@Override
-	int compareTo(PostDTO other){
+	public int compareTo(PostDTO other){
 		return this.date.compareTo(other.date);
 	}
 
