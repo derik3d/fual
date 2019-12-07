@@ -310,7 +310,12 @@ public class ManagerService implements IManagerService{
 		
 	}
 	
+	@Override
+	public List<Integer> getRecommendedUsers(Integer userId){
 	
+		return ((List<UserDataDTO>) iUserDataDAO.findTop10OrderByNumFollowers()).stream().map(UserDataDTO::getId).collect(Collectors.toList());
+	
+	}
 	
 
 }
